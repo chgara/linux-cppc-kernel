@@ -1,0 +1,46 @@
+From 3e844d842d49cdbe61a4b338bdd512654179488a Mon Sep 17 00:00:00 2001
+From: Dave Hansen <dave.hansen@linux.intel.com>
+Date: Fri, 18 Nov 2022 07:16:16 -0800
+Subject: x86/mm: Ensure forced page table splitting
+
+There are a few kernel users like kfence that require 4k pages to work
+correctly and do not support large mappings.  They use set_memory_4k()
+to break down those large mappings.
+
+That, in turn relies on cpa_data->force_split option to indicate to
+set_memory code that it should split page tables regardless of whether
+the need to be.
+
+But, a recent change added an optimization which would return early
+if a set_memory request came in that did not change permissions.  It
+did not consult ->force_split and would mistakenly optimize away the
+splitting that set_memory_4k() needs.  This broke kfence.
+
+Skip the same-permission optimization when ->force_split is set.
+
+Fixes: 127960a05548 ("x86/mm: Inhibit _PAGE_NX changes from cpa_process_alias()")
+Signed-off-by: Dave Hansen <dave.hansen@linux.intel.com>
+Tested-by: Marco Elver <elver@google.com>
+Cc: Peter Zijlstra (Intel) <peterz@infradead.org>
+Link: https://lore.kernel.org/all/CA+G9fYuFxZTxkeS35VTZMXwQvohu73W3xbZ5NtjebsVvH6hCuA@mail.gmail.com/
+---
+ arch/x86/mm/pat/set_memory.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/arch/x86/mm/pat/set_memory.c b/arch/x86/mm/pat/set_memory.c
+index 220361ceb9977..0db69514fe291 100644
+--- a/arch/x86/mm/pat/set_memory.c
++++ b/arch/x86/mm/pat/set_memory.c
+@@ -1727,7 +1727,8 @@ static int __change_page_attr_set_clr(struct cpa_data *cpa, int primary)
+ 	/*
+ 	 * No changes, easy!
+ 	 */
+-	if (!(pgprot_val(cpa->mask_set) | pgprot_val(cpa->mask_clr)))
++	if (!(pgprot_val(cpa->mask_set) | pgprot_val(cpa->mask_clr)) &&
++	    !cpa->force_split)
+ 		return ret;
+ 
+ 	while (rempages) {
+-- 
+cgit 
+

@@ -1,0 +1,116 @@
+From 89e927bbcd45d507e5612ef72fda04182e544a38 Mon Sep 17 00:00:00 2001
+From: Kristen Carlson Accardi <kristen@linux.intel.com>
+Date: Tue, 15 Nov 2022 08:16:26 -0800
+Subject: x86/sgx: Replace kmap/kunmap_atomic() calls
+
+kmap_local_page() is the preferred way to create temporary mappings when it
+is feasible, because the mappings are thread-local and CPU-local.
+
+kmap_local_page() uses per-task maps rather than per-CPU maps. This in
+effect removes the need to disable preemption on the local CPU while the
+mapping is active, and thus vastly reduces overall system latency. It is
+also valid to take pagefaults within the mapped region.
+
+The use of kmap_atomic() in the SGX code was not an explicit design choice
+to disable page faults or preemption, and there is no compelling design
+reason to using kmap_atomic() vs. kmap_local_page().
+
+Signed-off-by: Kristen Carlson Accardi <kristen@linux.intel.com>
+Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+Reviewed-by: Jarkko Sakkinen <jarkko@kernel.org>
+Reviewed-by: Fabio M. De Francesco <fmdefrancesco@gmail.com>
+Reviewed-by: Ira Weiny <ira.weiny@intel.com>
+Link: https://lore.kernel.org/linux-sgx/Y0biN3%2FJsZMa0yUr@kernel.org/
+Link: https://lore.kernel.org/r/20221115161627.4169428-1-kristen@linux.intel.com
+---
+ arch/x86/kernel/cpu/sgx/encl.c  | 12 ++++++------
+ arch/x86/kernel/cpu/sgx/ioctl.c |  4 ++--
+ arch/x86/kernel/cpu/sgx/main.c  |  8 ++++----
+ 3 files changed, 12 insertions(+), 12 deletions(-)
+
+diff --git a/arch/x86/kernel/cpu/sgx/encl.c b/arch/x86/kernel/cpu/sgx/encl.c
+index 2c258255a6296..68f8b18d2278d 100644
+--- a/arch/x86/kernel/cpu/sgx/encl.c
++++ b/arch/x86/kernel/cpu/sgx/encl.c
+@@ -160,8 +160,8 @@ static int __sgx_encl_eldu(struct sgx_encl_page *encl_page,
+ 		return ret;
+ 
+ 	pginfo.addr = encl_page->desc & PAGE_MASK;
+-	pginfo.contents = (unsigned long)kmap_atomic(b.contents);
+-	pcmd_page = kmap_atomic(b.pcmd);
++	pginfo.contents = (unsigned long)kmap_local_page(b.contents);
++	pcmd_page = kmap_local_page(b.pcmd);
+ 	pginfo.metadata = (unsigned long)pcmd_page + b.pcmd_offset;
+ 
+ 	if (secs_page)
+@@ -187,8 +187,8 @@ static int __sgx_encl_eldu(struct sgx_encl_page *encl_page,
+ 	 */
+ 	pcmd_page_empty = !memchr_inv(pcmd_page, 0, PAGE_SIZE);
+ 
+-	kunmap_atomic(pcmd_page);
+-	kunmap_atomic((void *)(unsigned long)pginfo.contents);
++	kunmap_local(pcmd_page);
++	kunmap_local((void *)(unsigned long)pginfo.contents);
+ 
+ 	get_page(b.pcmd);
+ 	sgx_encl_put_backing(&b);
+@@ -197,10 +197,10 @@ static int __sgx_encl_eldu(struct sgx_encl_page *encl_page,
+ 
+ 	if (pcmd_page_empty && !reclaimer_writing_to_pcmd(encl, pcmd_first_page)) {
+ 		sgx_encl_truncate_backing_page(encl, PFN_DOWN(page_pcmd_off));
+-		pcmd_page = kmap_atomic(b.pcmd);
++		pcmd_page = kmap_local_page(b.pcmd);
+ 		if (memchr_inv(pcmd_page, 0, PAGE_SIZE))
+ 			pr_warn("PCMD page not empty after truncate.\n");
+-		kunmap_atomic(pcmd_page);
++		kunmap_local(pcmd_page);
+ 	}
+ 
+ 	put_page(b.pcmd);
+diff --git a/arch/x86/kernel/cpu/sgx/ioctl.c b/arch/x86/kernel/cpu/sgx/ioctl.c
+index ef874828fa6b7..03c50f11ad75f 100644
+--- a/arch/x86/kernel/cpu/sgx/ioctl.c
++++ b/arch/x86/kernel/cpu/sgx/ioctl.c
+@@ -221,11 +221,11 @@ static int __sgx_encl_add_page(struct sgx_encl *encl,
+ 	pginfo.secs = (unsigned long)sgx_get_epc_virt_addr(encl->secs.epc_page);
+ 	pginfo.addr = encl_page->desc & PAGE_MASK;
+ 	pginfo.metadata = (unsigned long)secinfo;
+-	pginfo.contents = (unsigned long)kmap_atomic(src_page);
++	pginfo.contents = (unsigned long)kmap_local_page(src_page);
+ 
+ 	ret = __eadd(&pginfo, sgx_get_epc_virt_addr(epc_page));
+ 
+-	kunmap_atomic((void *)pginfo.contents);
++	kunmap_local((void *)pginfo.contents);
+ 	put_page(src_page);
+ 
+ 	return ret ? -EIO : 0;
+diff --git a/arch/x86/kernel/cpu/sgx/main.c b/arch/x86/kernel/cpu/sgx/main.c
+index 0aad028f04d40..e5a37b6e9aa58 100644
+--- a/arch/x86/kernel/cpu/sgx/main.c
++++ b/arch/x86/kernel/cpu/sgx/main.c
+@@ -165,17 +165,17 @@ static int __sgx_encl_ewb(struct sgx_epc_page *epc_page, void *va_slot,
+ 	pginfo.addr = 0;
+ 	pginfo.secs = 0;
+ 
+-	pginfo.contents = (unsigned long)kmap_atomic(backing->contents);
+-	pginfo.metadata = (unsigned long)kmap_atomic(backing->pcmd) +
++	pginfo.contents = (unsigned long)kmap_local_page(backing->contents);
++	pginfo.metadata = (unsigned long)kmap_local_page(backing->pcmd) +
+ 			  backing->pcmd_offset;
+ 
+ 	ret = __ewb(&pginfo, sgx_get_epc_virt_addr(epc_page), va_slot);
+ 	set_page_dirty(backing->pcmd);
+ 	set_page_dirty(backing->contents);
+ 
+-	kunmap_atomic((void *)(unsigned long)(pginfo.metadata -
++	kunmap_local((void *)(unsigned long)(pginfo.metadata -
+ 					      backing->pcmd_offset));
+-	kunmap_atomic((void *)(unsigned long)pginfo.contents);
++	kunmap_local((void *)(unsigned long)pginfo.contents);
+ 
+ 	return ret;
+ }
+-- 
+cgit 
+

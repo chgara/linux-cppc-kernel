@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-g14
-pkgver=6.1.1.arch1
+pkgver=6.1.6.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -30,8 +30,52 @@ source=(
   0001-platform-x86-asus-wmi-Add-safety-checks-to-dgpu-egpu.patch
   0001-Revert-perf-x86-intel-Fix-unchecked-MSR-access-error.patch
   0024-V8-0-4-PCI-vmd-Enable-PCIe-ASPM-and-LTR-on-select-hardware.patch
-  0026-drm-amdgpu-make-display-pinning-more-flexible-v2.patch
+  
   0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch
+
+
+  #0000-Enable-PCIe-ASPM-and-LTR-on-select-hardware.patch
+  #0000-PATCH-v5-00-16-x86-make-PAT-and-MTRR-independent-from-each-other.patch
+  #0000-PATCH-v9-01-13-rcu-Fix-missing-nocb-gp-wake-on-rcu_barrier.patch
+  0001-HDR-testing.patch
+  #0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch
+  0001-Revert-PCI-Add-a-REBAR-size-quirk-for-Sapphire-RX-56.patch
+  #0001-ga502-snd-test.patch
+  0001-linux6.0.y-bore1.7.5.patch
+  #0001-mm-support-POSIX_FADV_NOREUSE.patch NEEDS FIX
+  #0001-mm-x86-arm64-add-arch_has_hw_pte_young.patch
+  0001-perf-urgent-2023-01-06_Intel-RAPL-updates-for-new-model-IDs.patch
+  0001-sched-core-2022-12-12-sched-Clear-ttwu_pending-after-enqueue_task.patch
+  0001-thermal-6.2-rc1-Thermal-control-updates.patch
+  #0001-x86-bugs-Flush-IBP-in-ib_prctl_set.patch
+  0001-x86-intel_epb-Set-Alder-Lake-N-and-Raptor-Lake-P-normal-EPB.patch
+  #0001-x86_core_for_v6.2_Add-the-call-depth-tracking-mitigation-for-Retbleed-which-has.patch
+  #0001-x86_mm_for_6.2_v2_Randomize-the-per-cpu-entry-areas.patch
+  0001-x86_sgx_for_6.2-Introduce-SGX-feature-Asynchrounous-Exit-Notification.patch
+  
+  #Fix
+  #0001-acpica_allow_adress_space_handler.patch
+  #0002-acpi-6.2-rc1-2-More-ACPI-updates.patch
+  
+  0002-mm-add-vma_has_recency.patch
+  #0002-mm-x86-add-CONFIG_ARCH_HAS_NONLEAF_PMD_YOUNG.patch
+  #0003-mm-vmscan.c-refactor-shrink_node.patch
+  #0003-thermal-6.2-rc3-Thermal-control-fix.patch
+  #0004-Revert-include-linux-mm_inline.h-fold-__update_lru_s.patch
+  #0005-ACPI-x86-s2idle-Add-a-quirk-for-ASUS-ROG-Zephyrus-G1.patch Not need?
+  #0005-mm-multi-gen-LRU-groundwork.patch
+  #0006-ACPI-x86-s2idle-Add-a-quirk-for-Lenovo-Slim-7-Pro-14.patch
+  #0006-mm-multi-gen-LRU-minimal-implementation.patch
+  #0007-ACPI-x86-s2idle-Add-a-quirk-for-ASUSTeK-COMPUTER-INC.patch
+  #0007-mm-multi-gen-LRU-exploit-locality-in-rmap.patch
+  #0008-mm-multi-gen-LRU-support-page-table-walks.patch
+  #0009-ACPI-x86-s2idle-Add-another-ID-to-s2idle_dmi_table.patch
+  #0009-mm-multi-gen-LRU-optimize-multiple-memcgs.patch
+  #0010-mm-multi-gen-LRU-kill-switch.patch
+  #0011-mm-multi-gen-LRU-thrashing-prevention.patch
+  #0012-mm-multi-gen-LRU-debugfs-interface.patch
+  #0013-mm-multi-gen-LRU-admin-guide.patch
+  #0014-mm-multi-gen-LRU-design-doc.patch
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
