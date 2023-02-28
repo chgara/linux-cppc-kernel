@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-g14
-pkgver=6.1.6.arch1
+pkgver=6.1.12.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -37,14 +37,14 @@ source=(
   #0000-Enable-PCIe-ASPM-and-LTR-on-select-hardware.patch
   #0000-PATCH-v5-00-16-x86-make-PAT-and-MTRR-independent-from-each-other.patch
   #0000-PATCH-v9-01-13-rcu-Fix-missing-nocb-gp-wake-on-rcu_barrier.patch
-  0001-HDR-testing.patch
+  #check
+  #0001-HDR-testing.patch
   #0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch
   0001-Revert-PCI-Add-a-REBAR-size-quirk-for-Sapphire-RX-56.patch
   #0001-ga502-snd-test.patch
   0001-linux6.0.y-bore1.7.5.patch
   #0001-mm-support-POSIX_FADV_NOREUSE.patch NEEDS FIX
   #0001-mm-x86-arm64-add-arch_has_hw_pte_young.patch
-  0001-perf-urgent-2023-01-06_Intel-RAPL-updates-for-new-model-IDs.patch
   0001-sched-core-2022-12-12-sched-Clear-ttwu_pending-after-enqueue_task.patch
   0001-thermal-6.2-rc1-Thermal-control-updates.patch
   #0001-x86-bugs-Flush-IBP-in-ib_prctl_set.patch
