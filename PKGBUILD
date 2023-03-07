@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-g14
-pkgver=6.1.12.arch1
+pkgver=6.2.2.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -33,49 +33,11 @@ source=(
   
   0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch
 
-
-  #0000-Enable-PCIe-ASPM-and-LTR-on-select-hardware.patch
-  #0000-PATCH-v5-00-16-x86-make-PAT-and-MTRR-independent-from-each-other.patch
-  #0000-PATCH-v9-01-13-rcu-Fix-missing-nocb-gp-wake-on-rcu_barrier.patch
-  #check
-  #0001-HDR-testing.patch
-  #0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch
   0001-Revert-PCI-Add-a-REBAR-size-quirk-for-Sapphire-RX-56.patch
-  #0001-ga502-snd-test.patch
   0001-linux6.0.y-bore1.7.5.patch
-  #0001-mm-support-POSIX_FADV_NOREUSE.patch NEEDS FIX
-  #0001-mm-x86-arm64-add-arch_has_hw_pte_young.patch
-  0001-sched-core-2022-12-12-sched-Clear-ttwu_pending-after-enqueue_task.patch
-  0001-thermal-6.2-rc1-Thermal-control-updates.patch
-  #0001-x86-bugs-Flush-IBP-in-ib_prctl_set.patch
-  0001-x86-intel_epb-Set-Alder-Lake-N-and-Raptor-Lake-P-normal-EPB.patch
-  #0001-x86_core_for_v6.2_Add-the-call-depth-tracking-mitigation-for-Retbleed-which-has.patch
-  #0001-x86_mm_for_6.2_v2_Randomize-the-per-cpu-entry-areas.patch
-  0001-x86_sgx_for_6.2-Introduce-SGX-feature-Asynchrounous-Exit-Notification.patch
-  
-  #Fix
-  #0001-acpica_allow_adress_space_handler.patch
-  #0002-acpi-6.2-rc1-2-More-ACPI-updates.patch
   
   0002-mm-add-vma_has_recency.patch
-  #0002-mm-x86-add-CONFIG_ARCH_HAS_NONLEAF_PMD_YOUNG.patch
-  #0003-mm-vmscan.c-refactor-shrink_node.patch
-  #0003-thermal-6.2-rc3-Thermal-control-fix.patch
-  #0004-Revert-include-linux-mm_inline.h-fold-__update_lru_s.patch
-  #0005-ACPI-x86-s2idle-Add-a-quirk-for-ASUS-ROG-Zephyrus-G1.patch Not need?
-  #0005-mm-multi-gen-LRU-groundwork.patch
-  #0006-ACPI-x86-s2idle-Add-a-quirk-for-Lenovo-Slim-7-Pro-14.patch
-  #0006-mm-multi-gen-LRU-minimal-implementation.patch
-  #0007-ACPI-x86-s2idle-Add-a-quirk-for-ASUSTeK-COMPUTER-INC.patch
-  #0007-mm-multi-gen-LRU-exploit-locality-in-rmap.patch
-  #0008-mm-multi-gen-LRU-support-page-table-walks.patch
-  #0009-ACPI-x86-s2idle-Add-another-ID-to-s2idle_dmi_table.patch
-  #0009-mm-multi-gen-LRU-optimize-multiple-memcgs.patch
-  #0010-mm-multi-gen-LRU-kill-switch.patch
-  #0011-mm-multi-gen-LRU-thrashing-prevention.patch
-  #0012-mm-multi-gen-LRU-debugfs-interface.patch
-  #0013-mm-multi-gen-LRU-admin-guide.patch
-  #0014-mm-multi-gen-LRU-design-doc.patch
+  0028-disable-amd-hwrng.patch
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
@@ -93,13 +55,16 @@ sha256sums=('SKIP'
             '70cf3252ff877cb91ca7eba13439ae181e693513b09ff43e83c48d2b0b46d0f8'
             '278118011d7a2eeca9971ac97b31bf0c55ab55e99c662ab9ae4717b55819c9a2'
             'dea86a521603414a8c7bf9cf1f41090d5d6f8035ce31407449e25964befb1e50'
-            '40e4c300be6681ab3b30042eb4bb5981081ce029b2bdd4773a38b4a9f65e943e'
+            '0a7ea482fe20c403788d290826cec42fe395e5a6eab07b88845f8b9a9829998d'
             'd45e2ae1d21b1dc8e0de94a4fa58e9a53d72306843f87d3cc49f5f641399d8e3'
             '172dbc88d0a3cda78387f3c907fa4953c71cb1cb162f0b34f78b8b78924bc3d4'
             '6739a42bf9d233cb58ae9a69c3f78959175de695e2d4a7e66bb9984fcf5c0f7e'
             'f036ac8a49153f66d7d8638508cfe0b4a158d12faf30d2c671b04a6b7b606b3b'
-            '949c025ea8b46168cd7c6f0dc6b9513905a8d94ad6ed11ba95de65f336ec62e3'
             'a691e7b22633fe0c458d140167d6d381b66149e05de3cb926b30a19fd43e78ce'
+            '7b16fce20b03babc9e149030f43e283534835bbd8835ba0a794fd0205fea1708'
+            'bca0caa5efad45c0acde1e78d43f8ce1af6ebf3cbb0240b143be3e6486509970'
+            'b6288935f2768a7023d11e9a200f47b087669ffd4d418f791ee71d5a51d0530e'
+            '122e2c14a03b64860566bde528f81eb6f15b804d8b8f296f1baaa59cd6a7c741'
             '15e912a66e4bbce1cf0450f1dc6610653df29df8dd6d5426f9c1b039490436c8'
             '444f2d86de8c2177655b01596f939f99c2e7abfa8efad8a509e0a334f42dfa85'
             '982a31e47d3d586789e1b3cdda25f75e3b71d810e7494202089b8f2cef7c0ef9')
@@ -191,6 +156,10 @@ prepare() {
   scripts/config  --enable CONFIG_CMDLINE_BOOL \
                   --set-str CONFIG_CMDLINE "makepkgplaceholderyolo" \
                   --disable CMDLINE_OVERRIDE
+
+  # enable back EFI_HANDOVER_PROTOCOL and EFI_STUB
+  scripts/config  --enable CONFIG_EFI_HANDOVER_PROTOCOL \
+                  --enable CONFIG_EFI_STUB
 
   # HACK: forcibly fixup CONFIG_CMDLINE here as using scripts/config mangles escaped quotes
   sed -i 's#makepkgplaceholderyolo#ibt=off pm_debug_messages amd_pmc.dyndbg=\\"+p\\" acpi.dyndbg=\\"file drivers/acpi/x86/s2idle.c +p\\"#' .config
