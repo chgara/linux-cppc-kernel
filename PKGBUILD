@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-g14
-pkgver=6.2.2.arch1
+pkgver=6.2.12.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -37,7 +37,8 @@ source=(
   0001-linux6.0.y-bore1.7.5.patch
   
   0002-mm-add-vma_has_recency.patch
-  0028-disable-amd-hwrng.patch
+
+  0028-patch01_gu604_alc285_fixes.patch
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
