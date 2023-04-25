@@ -2,7 +2,7 @@
 
 pkgbase=linux-g14
 pkgver=6.2.12.arch1
-pkgrel=1
+pkgrel=2
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://gitlab.com/dragonn/linux-g14.git"
@@ -39,6 +39,10 @@ source=(
   0002-mm-add-vma_has_recency.patch
 
   0028-patch01_gu604_alc285_fixes.patch
+
+  0029-HID-asus-Add-support-for-ASUS-ROG-Z13-keyboard.patch
+  0030-HID-asus-Add-support-for-ASUS-ROG-Z13-ACRNM-keyboard.patch
+  0031-HID-asus-Map-0xc7-key-event-to-KEY_KBDILLUMTOGGLE.patch
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
