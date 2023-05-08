@@ -1,8 +1,8 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-g14
-pkgver=6.2.12.arch1
-pkgrel=3
+pkgver=6.3.1.arch1
+pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://gitlab.com/dragonn/linux-g14.git"
@@ -28,8 +28,8 @@ source=(
 
   0019-HID-amd_sfh-Add-keyguard-for-ASUS-ROG-X13-tablet.patch
   0001-platform-x86-asus-wmi-Add-safety-checks-to-dgpu-egpu.patch
-  0001-Revert-perf-x86-intel-Fix-unchecked-MSR-access-error.patch
-  0024-V8-0-4-PCI-vmd-Enable-PCIe-ASPM-and-LTR-on-select-hardware.patch
+  #0001-Revert-perf-x86-intel-Fix-unchecked-MSR-access-error.patch
+  #0024-V8-0-4-PCI-vmd-Enable-PCIe-ASPM-and-LTR-on-select-hardware.patch
   
   0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch
 
@@ -37,14 +37,23 @@ source=(
   0001-constgran-v2.patch
   0001-linux6.1.y-bore2.2.1.patch
   
-  0002-mm-add-vma_has_recency.patch
+  #0002-mm-add-vma_has_recency.patch
 
   0028-patch01_gu604_alc285_fixes.patch
+  0029-patch02_gu604v_wmi_keys.patch
 
-  0029-HID-asus-Add-support-for-ASUS-ROG-Z13-keyboard.patch
-  0030-HID-asus-Add-support-for-ASUS-ROG-Z13-ACRNM-keyboard.patch
-  0031-HID-asus-Map-0xc7-key-event-to-KEY_KBDILLUMTOGGLE.patch
+  #0029-HID-asus-Add-support-for-ASUS-ROG-Z13-keyboard.patch
+  #0030-HID-asus-Add-support-for-ASUS-ROG-Z13-ACRNM-keyboard.patch
+  #0031-HID-asus-Map-0xc7-key-event-to-KEY_KBDILLUMTOGGLE.patch
   0031-FX516PE-rgb-mode.patch
+
+  0001-HID-asus-Add-support-for-ASUS-ROG-Z13-keyboard.patch
+  0002-HID-asus-add-keycodes-for-0x6a-0x4b-and-0xc7.patch
+  0003-HID-asus-reformat-the-hotkey-mapping-block.patch
+  0004-ALSA-hda-realtek-Add-quirk-for-2nd-ASUS-GU603.patch
+  0005-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
+  0006-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
+  0007-platform-x86-asus-wmi-add-support-for-ASUS-screenpad.patch
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
@@ -92,14 +101,21 @@ export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
 
+_make() {
+  test -s version
+  make KERNELRELEASE="$(<version)" "$@"
+}
+
+
 prepare() {
   cd $_srcname
 
   echo "Setting version..."
-  scripts/setlocalversion --save-scmversion
-  #echo '' >.scmversion                        # HACK:  maybe needed
-  echo "-$pkgrel" > localversion.99-pkgrel
+  echo "-$pkgrel" > localversion.10-pkgrel
   echo "${pkgbase#linux}" > localversion.20-pkgname
+  make defconfig
+  make -s kernelrelease > version
+  make mrproper
 
   local src
   for src in "${source[@]}"; do
@@ -113,16 +129,15 @@ prepare() {
   # if throw is defined we had a hard patch failure, propagate it and stop so we can address
   [[ -z "$_throw" ]]
 
-  echo "Setting config..."
-  cp ../config .config
-
-  make olddefconfig
-
-  # let user choose microarchitecture optimization in GCC
+    # let user choose microarchitecture optimization in GCC
   # this needs to run *after* `make olddefconfig` so that our newly added configuration macros exist
   sh ${srcdir}/choose-gcc-optimization.sh $_microarchitecture
 
-  make -s kernelrelease > version
+  echo "Setting config..."
+  cp ../config .config
+  _make olddefconfig
+  diff -u ../config .config || :
+
   echo "Prepared $pkgbase version $(<version)"
 
   scripts/config --enable CONFIG_PINCTRL_AMD
@@ -180,7 +195,7 @@ prepare() {
 
 build() {
   cd $_srcname
-  make all
+  _make all
 }
 
 _package() {
@@ -198,13 +213,14 @@ _package() {
   echo "Installing boot image..."
   # systemd expects to find the kernel here to allow hibernation
   # https://github.com/systemd/systemd/commit/edda44605f06a41fb86b7ab8128dcf99161d2344
-  install -Dm644 "$(make -s image_name)" "$modulesdir/vmlinuz"
+  install -Dm644 "$(_make -s image_name)" "$modulesdir/vmlinuz"
 
   # Used by mkinitcpio to name the kernel
   echo "$pkgbase" | install -Dm644 /dev/stdin "$modulesdir/pkgbase"
 
   echo "Installing modules..."
-  make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 modules_install
+  _make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 \
+    DEPMOD=/doesnt/exist modules_install  # Suppress depmod
 
   # remove build and source links
   rm "$modulesdir"/{source,build}
