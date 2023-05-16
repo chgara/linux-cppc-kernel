@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-g14
-pkgver=6.3.1.arch1
+pkgver=6.3.2.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -46,6 +46,7 @@ source=(
   #0030-HID-asus-Add-support-for-ASUS-ROG-Z13-ACRNM-keyboard.patch
   #0031-HID-asus-Map-0xc7-key-event-to-KEY_KBDILLUMTOGGLE.patch
   0031-FX516PE-rgb-mode.patch
+  0032-Bluetooth-btusb-Add-a-new-PID-VID-0489-e0f6-for-MT7922.patch
 
   0001-HID-asus-Add-support-for-ASUS-ROG-Z13-keyboard.patch
   0002-HID-asus-add-keycodes-for-0x6a-0x4b-and-0xc7.patch
