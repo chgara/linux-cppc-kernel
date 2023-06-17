@@ -1,8 +1,8 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-g14
-pkgver=6.3.5.arch1
-pkgrel=2
+pkgver=6.3.8.arch1
+pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://gitlab.com/dragonn/linux-g14.git"
@@ -61,7 +61,7 @@ source=(
   #0007-platform-x86-asus-wmi-add-support-for-ASUS-screenpad.patch
 
   0001-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
-  0001-ALSA-hda-realtek-gu604.patch
+  #0001-ALSA-hda-realtek-gu604.patch
   0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch
   0002-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
   0003-HID-asus-Add-support-for-ASUS-ROG-Z13-keyboard.patch
@@ -74,7 +74,8 @@ source=(
   0010-platform-x86-asus-wmi-add-WMI-method-to-show-if-egpu.patch
   0011-platform-x86-asus-wmi-support-setting-mini-LED-mode.patch
 
-  #0031-FX516PE-rgb-mode.patch
+  #0037-CS35L41-ROG-quirks.patch
+  0038-mediatek-pci-reset.patch
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
