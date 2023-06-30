@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-g14
-pkgver=6.3.8.arch1
+pkgver=6.3.9.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -37,10 +37,10 @@ source=(
   0001-constgran-v2.patch
   0001-linux6.1.y-bore2.2.1.patch
   
-  #0002-mm-add-vma_has_recency.patch
+  #0002-mm-add-vma_has_recency.patchsu
 
   #0028-patch01_gu604_alc285_fixes.patch
-  0029-patch02_gu604v_wmi_keys.patch
+  #0029-patch02_gu604v_wmi_keys.patch
 
   #0029-HID-asus-Add-support-for-ASUS-ROG-Z13-keyboard.patch
   #0030-HID-asus-Add-support-for-ASUS-ROG-Z13-ACRNM-keyboard.patch
@@ -67,12 +67,24 @@ source=(
   0003-HID-asus-Add-support-for-ASUS-ROG-Z13-keyboard.patch
   0004-HID-asus-add-keycodes-for-0x6a-0x4b-and-0xc7.patch
   0005-HID-asus-reformat-the-hotkey-mapping-block.patch
-  0006-platform-x86-asus-wmi-add-support-for-ASUS-screenpad.patch
-  0007-platform-x86-asus-wmi-add-support-for-showing-charge.patch
-  0008-platform-x86-asus-wmi-add-support-for-showing-middle.patch
-  0009-platform-x86-asus-wmi-support-middle-fan-custom-curv.patch
-  0010-platform-x86-asus-wmi-add-WMI-method-to-show-if-egpu.patch
-  0011-platform-x86-asus-wmi-support-setting-mini-LED-mode.patch
+  #0006-platform-x86-asus-wmi-add-support-for-ASUS-screenpad.patch
+  #0007-platform-x86-asus-wmi-add-support-for-showing-charge.patch
+  #0008-platform-x86-asus-wmi-add-support-for-showing-middle.patch
+  #0009-platform-x86-asus-wmi-support-middle-fan-custom-curv.patch
+  #0010-platform-x86-asus-wmi-add-WMI-method-to-show-if-egpu.patch
+  #0011-platform-x86-asus-wmi-support-setting-mini-LED-mode.patch
+
+  0001-ALSA-hda-realtek-Add-quirk-for-ASUS-ROG-GX650P.patch
+  0002-ALSA-hda-realtek-Add-quirk-for-ASUS-ROG-GA402X.patch
+  v2-0001-platform-x86-asus-wmi-add-support-for-showing-cha.patch
+  v2-0002-platform-x86-asus-wmi-add-support-for-showing-mid.patch
+  v2-0003-platform-x86-asus-wmi-support-middle-fan-custom-c.patch
+  v2-0004-platform-x86-asus-wmi-add-WMI-method-to-show-if-e.patch
+  v2-0005-platform-x86-asus-wmi-don-t-allow-eGPU-switching-.patch
+  v2-0006-platform-x86-asus-wmi-add-safety-checks-to-gpu-sw.patch
+  v2-0007-platform-x86-asus-wmi-support-setting-mini-LED-mo.patch
+  v2-0008-platform-x86-asus-wmi-expose-dGPU-and-CPU-tunable.patch
+  v4-0001-platform-x86-asus-wmi-add-support-for-ASUS-screen.patch
 
   #0037-CS35L41-ROG-quirks.patch
   0038-mediatek-pci-reset.patch
