@@ -26,10 +26,7 @@ source=(
 
   0001-acpi-proc-idle-skip-dummy-wait.patch
 
-  #0019-HID-amd_sfh-Add-keyguard-for-ASUS-ROG-X13-tablet.patch
   0001-platform-x86-asus-wmi-Add-safety-checks-to-dgpu-egpu.patch
-  #0001-Revert-perf-x86-intel-Fix-unchecked-MSR-access-error.patch
-  #0024-V8-0-4-PCI-vmd-Enable-PCIe-ASPM-and-LTR-on-select-hardware.patch
   
   0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch
 
@@ -37,42 +34,16 @@ source=(
   0001-constgran-v2.patch
   0001-linux6.1.y-bore2.2.1.patch
   
-  #0002-mm-add-vma_has_recency.patchsu
-
-  #0028-patch01_gu604_alc285_fixes.patch
-  #0029-patch02_gu604v_wmi_keys.patch
-
-  #0029-HID-asus-Add-support-for-ASUS-ROG-Z13-keyboard.patch
-  #0030-HID-asus-Add-support-for-ASUS-ROG-Z13-ACRNM-keyboard.patch
-  #0031-HID-asus-Map-0xc7-key-event-to-KEY_KBDILLUMTOGGLE.patch
-  
   0032-Bluetooth-btusb-Add-a-new-PID-VID-0489-e0f6-for-MT7922.patch
-  #0033-use_cpuid_vector_0xb_when_available_for_detecting_cpu_topology.patch
-  #0034-xfs_factor_xfs_bmap_btalloc.patch
   0035-Add_quirk_for_polling_the_KBD_port.patch
   0036-Block_a_rogue_device_on_ASUS_TUF_A16.patch
 
-  #0001-HID-asus-Add-support-for-ASUS-ROG-Z13-keyboard.patch
-  #0002-HID-asus-add-keycodes-for-0x6a-0x4b-and-0xc7.patch
-  #0003-HID-asus-reformat-the-hotkey-mapping-block.patch
-  #0004-ALSA-hda-realtek-Add-quirk-for-2nd-ASUS-GU603.patch
-  #0005-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
-  #0006-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
-  #0007-platform-x86-asus-wmi-add-support-for-ASUS-screenpad.patch
-
   0001-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
-  #0001-ALSA-hda-realtek-gu604.patch
   0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch
   0002-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
   0003-HID-asus-Add-support-for-ASUS-ROG-Z13-keyboard.patch
   0004-HID-asus-add-keycodes-for-0x6a-0x4b-and-0xc7.patch
   0005-HID-asus-reformat-the-hotkey-mapping-block.patch
-  #0006-platform-x86-asus-wmi-add-support-for-ASUS-screenpad.patch
-  #0007-platform-x86-asus-wmi-add-support-for-showing-charge.patch
-  #0008-platform-x86-asus-wmi-add-support-for-showing-middle.patch
-  #0009-platform-x86-asus-wmi-support-middle-fan-custom-curv.patch
-  #0010-platform-x86-asus-wmi-add-WMI-method-to-show-if-egpu.patch
-  #0011-platform-x86-asus-wmi-support-setting-mini-LED-mode.patch
 
   0001-ALSA-hda-realtek-Add-quirk-for-ASUS-ROG-GX650P.patch
   0002-ALSA-hda-realtek-Add-quirk-for-ASUS-ROG-GA402X.patch
@@ -86,7 +57,6 @@ source=(
   v2-0008-platform-x86-asus-wmi-expose-dGPU-and-CPU-tunable.patch
   v4-0001-platform-x86-asus-wmi-add-support-for-ASUS-screen.patch
 
-  #0037-CS35L41-ROG-quirks.patch
   0038-mediatek-pci-reset.patch
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
@@ -104,30 +74,34 @@ validpgpkeys=(
 sha256sums=('SKIP'
             'c8b3fbb7664801bebc2d2d1fdf624524865a7817d0021c55c98523cb58dee201'
             '278118011d7a2eeca9971ac97b31bf0c55ab55e99c662ab9ae4717b55819c9a2'
-            'dea86a521603414a8c7bf9cf1f41090d5d6f8035ce31407449e25964befb1e50'
+            '81ad663925a0aa5b5332a69bae7227393664bb81ee2e57a283e7f16e9ff75efe'
             '0a7ea482fe20c403788d290826cec42fe395e5a6eab07b88845f8b9a9829998d'
-            'd45e2ae1d21b1dc8e0de94a4fa58e9a53d72306843f87d3cc49f5f641399d8e3'
             '172dbc88d0a3cda78387f3c907fa4953c71cb1cb162f0b34f78b8b78924bc3d4'
             'a691e7b22633fe0c458d140167d6d381b66149e05de3cb926b30a19fd43e78ce'
             '7b16fce20b03babc9e149030f43e283534835bbd8835ba0a794fd0205fea1708'
             'efbf65b17fb48fd22f199b6fddd05f159f8ea31faad5543f2c07fddf45eb9f12'
             'd4f8e606eaad9a1fe302f04b9023a3980eb2305108c0d8c90654d23e53ff8bef'
-            '8614c92567822e38ac7a0893e93776f39bbb6d373797f4b713cef5b3c060c8f1'
-            'cdbcec3031878cdb7ffab32034e4ee31bbd0ec214088f95dc446a13320985631'
-            'ec3cced4d3d5de4827e07430a77fcba755d84b9cfded09dc0b6be46e28427f22'
             'a8e1e11a4ab1995cc4975c9b134a43ddfe7054ef0c965e52a7d8f9223e15c3e0'
             '315d1839630b37894a626bbc2aea012618b2e1ccb6f9d8aa27c0a3ce5e90e99c'
             '1740589bbf5eb2c292904e508270ed221e1382f78bcb7cf1c72f1dc12f767e69'
-            '14f695b481e1afc4ac8c79ef48f0613267c86d1862f3293d889f6f68e1b84188'
-            '93b7ad2dd6b172d487d5e37847027f5854cae0c7291bc643d890045692903bab'
-            '04167065497211326a3a6f83519111e2f81273c848143d300e7e3e91062c061b'
-            '185ccdbfa7d4a0a3c55412082d87c5965221a73442f076d396f1e8cc0aabece1'
-            'e20f3d11077c9abe8cc41c61378abd6b3fbd5059497a01baa881a810f1c91eb0'
-            '22ae0fb68016064ce32d5a32235d463b6e65eff2af83fe70be976cf39b1a9623'
-            '704eeac9399a6ac2c224554e912730674b4a132b4d2a68be290c0112eda55c9a'
-            'd4a8b2eb1cf9a38f287d12cca69978c3018c2e5c1b676cc32af19ab8ca381a03'
-            '8aab977632700d39465adcde40d3c0c334362bc0aea4f2e21d68630f525a4315'
-            'a1427e7e4320438d3e7996e708d08c69cc7b7c7652000bdaeb58433769b1ee59'
+            'a00b952d53df9d3617d93e8fba4146a4d6169ebe79f029b3a55cca68f738d8ea'
+            '829e09c0ac6f21ca68114e406754c7645921df189d38a0ba34c93784303e1c23'
+            '4912b1319e46ddd6670147f5e878b4aca8bcfbd7b5c852fe11e434e424666365'
+            '655a7650a21ce4f725caf6fa248295edefa25a248aeaecf3d65a058503ae2530'
+            '7ce4b001a81b15b5b5275620fc0cee3d251d753698ae3db4593619a2121e1f2e'
+            'c7d44e1eb82b4711b4cc86016a1886a573f1abc893dbdd201d4a6d0326859b85'
+            '58c46d5d5b3428bd3c9354cf66542ae91323b116dc52826ca5eed2e522b67b0a'
+            '06fd2961548a7d3e31bcd388e67d07f9840c74a7811f70810a7ca1f946e59c9e'
+            '454dc9b16fd2559843d78a93905a39b1668eaaecb0bf0a9dccf432199f9b96be'
+            '5a82899580abaaab4cd818c96407b6be5b2d6b6d1004355eab12fedebdb968a0'
+            'a75528877f5db652b4e0b5e68f2ec39557bcad9786c6f6419327d3e08d1fe9be'
+            'cbf0738ba984d0fa9ad396ec1e5b2a6ed1e2411dc81b17423fdceef423a484b2'
+            '9f98765b43f5f31b33ed05f3611508113b02518e680ee82b251de80dae2e141d'
+            '5e58aa605c2ae00c0925e1fbb838a8041e7cf2eb78c0d6167e59dbe27b536565'
+            '137f16f59a63568b3546649346ef1bc2211c03da28178a94bf8cd104051f67b8'
+            '1983fbb75a4e8c76ffeca51b42dcb3cdcd4a6a5b4aafdb02b3dcbf3c5c9a94ad'
+            '2e0274f6681d22f0350bb04cab4bbe796e97c9bb1bd297054eaf900046036d81'
+            'd673d034fbcd80426fd8d9c6af56537c5fe5b55fe49d74e313474d7fc285ecc1'
             '15e912a66e4bbce1cf0450f1dc6610653df29df8dd6d5426f9c1b039490436c8'
             '444f2d86de8c2177655b01596f939f99c2e7abfa8efad8a509e0a334f42dfa85'
             '982a31e47d3d586789e1b3cdda25f75e3b71d810e7494202089b8f2cef7c0ef9')
