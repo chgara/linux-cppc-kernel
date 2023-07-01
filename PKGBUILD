@@ -2,7 +2,7 @@
 
 pkgbase=linux-g14
 pkgver=6.3.9.arch1
-pkgrel=1
+pkgrel=2
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://gitlab.com/dragonn/linux-g14.git"
@@ -58,6 +58,9 @@ source=(
   v4-0001-platform-x86-asus-wmi-add-support-for-ASUS-screen.patch
 
   0038-mediatek-pci-reset.patch
+  0040-workaround_hardware_decoding_amdgpu.patch
+  0041-flush_and_deleyed_gfxoff_on_suspend_amdgpu.patch
+
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
