@@ -1,8 +1,8 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-g14
-pkgver=6.3.9.arch1
-pkgrel=2
+pkgver=6.4.1.arch2
+pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://gitlab.com/dragonn/linux-g14.git"
@@ -32,7 +32,7 @@ source=(
 
   0001-Revert-PCI-Add-a-REBAR-size-quirk-for-Sapphire-RX-56.patch
   0001-constgran-v2.patch
-  0001-linux6.1.y-bore2.2.1.patch
+  
   
   0032-Bluetooth-btusb-Add-a-new-PID-VID-0489-e0f6-for-MT7922.patch
   0035-Add_quirk_for_polling_the_KBD_port.patch
@@ -60,6 +60,18 @@ source=(
   0038-mediatek-pci-reset.patch
   0040-workaround_hardware_decoding_amdgpu.patch
   0041-flush_and_deleyed_gfxoff_on_suspend_amdgpu.patch
+
+  #v2-0001-ALSA-hda-realtek-Add-quirk-for-ASUS-ROG-GX650P.patch
+  #v2-0002-ALSA-hda-realtek-Add-quirk-for-ASUS-ROG-GA402X.patch
+  v2-0003-ALSA-hda-realtek-Amend-G634-quirk-to-enable-rear-.patch
+  v2-0004-ALSA-hda-realtek-Add-quirk-for-ASUS-ROG-G614Jx.patch
+  #v2-0005-Fixes-31278997add6-ALSA-hda-realtek-Add-headset-q.patch
+
+  0001-linux6.1.y-bore2.4.1.patch
+
+  v12_20230224_vincent_guittot_add_latency_priority_for_cfs_class.patch
+  v4_20230406_ricardo_neri_calderon_sched_avoid_unnecessary_migrations_within_smt_domains.patch
+  v8_20230429_yu_c_chen_sched_fair_introduce_sis_current_to_wake_up_short_task_on_current_cpu.patch
 
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
