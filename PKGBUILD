@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-g14
-pkgver=6.4.1.arch2
+pkgver=6.4.3.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -218,6 +218,9 @@ prepare() {
   # enable back EFI_HANDOVER_PROTOCOL and EFI_STUB
   scripts/config  --enable CONFIG_EFI_HANDOVER_PROTOCOL \
                   --enable CONFIG_EFI_STUB
+
+  # try to fix stuttering on some ROG laptops
+  scripts/config --disable CONFIG_HW_RANDOM_TPM
 
   # HACK: forcibly fixup CONFIG_CMDLINE here as using scripts/config mangles escaped quotes
   sed -i 's#makepkgplaceholderyolo#ibt=off pm_debug_messages amd_pmc.dyndbg=\\"+p\\" acpi.dyndbg=\\"file drivers/acpi/x86/s2idle.c +p\\"#' .config
