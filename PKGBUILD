@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-g14
-pkgver=6.4.3.arch1
+pkgver=6.4.4.arch1
 pkgrel=2
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -72,7 +72,8 @@ source=(
   v12_20230224_vincent_guittot_add_latency_priority_for_cfs_class.patch
   v4_20230406_ricardo_neri_calderon_sched_avoid_unnecessary_migrations_within_smt_domains.patch
   v8_20230429_yu_c_chen_sched_fair_introduce_sis_current_to_wake_up_short_task_on_current_cpu.patch
-
+  PATCH-v3-platform-x86-asus-wmi-Fix-setting-RGB-mode-on-some-TUF-laptops.patch
+  0001-platform-x86-asus-wmi-Fix-and-cleanup-custom-fan-cur.patch
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
