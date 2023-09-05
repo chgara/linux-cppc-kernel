@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-g14
-pkgver=6.4.9.arch1
+pkgver=6.4.12.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -45,8 +45,6 @@ source=(
   0004-HID-asus-add-keycodes-for-0x6a-0x4b-and-0xc7.patch
   0005-HID-asus-reformat-the-hotkey-mapping-block.patch
 
-  0001-ALSA-hda-realtek-Add-quirk-for-ASUS-ROG-GX650P.patch
-  0002-ALSA-hda-realtek-Add-quirk-for-ASUS-ROG-GA402X.patch
   v2-0001-platform-x86-asus-wmi-add-support-for-showing-cha.patch
   v2-0002-platform-x86-asus-wmi-add-support-for-showing-mid.patch
   v2-0003-platform-x86-asus-wmi-support-middle-fan-custom-c.patch
@@ -59,13 +57,6 @@ source=(
 
   0038-mediatek-pci-reset.patch
   0040-workaround_hardware_decoding_amdgpu.patch
-  0041-flush_and_deleyed_gfxoff_on_suspend_amdgpu.patch
-
-  #v2-0001-ALSA-hda-realtek-Add-quirk-for-ASUS-ROG-GX650P.patch
-  #v2-0002-ALSA-hda-realtek-Add-quirk-for-ASUS-ROG-GA402X.patch
-  v2-0003-ALSA-hda-realtek-Amend-G634-quirk-to-enable-rear-.patch
-  v2-0004-ALSA-hda-realtek-Add-quirk-for-ASUS-ROG-G614Jx.patch
-  #v2-0005-Fixes-31278997add6-ALSA-hda-realtek-Add-headset-q.patch
 
   0001-linux6.1.y-bore2.4.1.patch
 
@@ -75,9 +66,23 @@ source=(
   PATCH-v3-platform-x86-asus-wmi-Fix-setting-RGB-mode-on-some-TUF-laptops.patch
   0001-platform-x86-asus-wmi-Fix-and-cleanup-custom-fan-cur.patch
 
+  #0001-platform-x86-asus-wmi-add-support-for-showing-charge.patch
+  #0002-platform-x86-asus-wmi-add-support-for-showing-middle.patch
+  #0003-platform-x86-asus-wmi-support-middle-fan-custom-curv.patch
+  #0004-platform-x86-asus-wmi-add-WMI-method-to-show-if-egpu.patch
+  0005-platform-x86-asus-wmi-don-t-allow-eGPU-switching-if-.patch
+  0006-platform-x86-asus-wmi-add-safety-checks-to-gpu-switc.patch
+  #0007-platform-x86-asus-wmi-support-setting-mini-LED-mode.patch
+  #0008-platform-x86-asus-wmi-expose-dGPU-and-CPU-tunables-f.patch
+  #0009-Fixes-a23870110a38-asus-wmi-add-support-for-showing-.patch
+  0010-ALSA-hda-cs35l41-Support-systems-with-missing-_DSD-p.patch
+  0011-ALSA-hda-cs35l41-Support-ASUS-2023-laptops-with-miss.patch
+  0012-platform-x86-asus-wmi-corrections-to-egpu-safety-che.patch
+  #0013-platform-x86-asus-wmi-add-support-for-ASUS-screenpad.patch
+
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
-  "sys-kernel_arch-sources-g14_files-0049-ALSA-hda-realtek-Add-quirk-for-ASUS-M16-GU603H.patch"
+  #"sys-kernel_arch-sources-g14_files-0049-ALSA-hda-realtek-Add-quirk-for-ASUS-M16-GU603H.patch"
 )
 
 validpgpkeys=(
