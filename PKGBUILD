@@ -1,8 +1,8 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-g14
-pkgver=6.4.12.arch1
-pkgrel=2
+pkgver=6.5.2.arch1
+pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://gitlab.com/dragonn/linux-g14.git"
@@ -39,11 +39,7 @@ source=(
   0036-Block_a_rogue_device_on_ASUS_TUF_A16.patch
 
   0001-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
-  #0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch
   0002-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
-  0003-HID-asus-Add-support-for-ASUS-ROG-Z13-keyboard.patch
-  0004-HID-asus-add-keycodes-for-0x6a-0x4b-and-0xc7.patch
-  0005-HID-asus-reformat-the-hotkey-mapping-block.patch
 
   v2-0001-platform-x86-asus-wmi-add-support-for-showing-cha.patch
   v2-0002-platform-x86-asus-wmi-add-support-for-showing-mid.patch
@@ -53,32 +49,14 @@ source=(
   v2-0006-platform-x86-asus-wmi-add-safety-checks-to-gpu-sw.patch
   v2-0007-platform-x86-asus-wmi-support-setting-mini-LED-mo.patch
   v2-0008-platform-x86-asus-wmi-expose-dGPU-and-CPU-tunable.patch
-  #v4-0001-platform-x86-asus-wmi-add-support-for-ASUS-screen.patch
 
   0038-mediatek-pci-reset.patch
   0040-workaround_hardware_decoding_amdgpu.patch
 
-  0001-linux6.1.y-bore2.4.1.patch
-
-  v12_20230224_vincent_guittot_add_latency_priority_for_cfs_class.patch
-  v4_20230406_ricardo_neri_calderon_sched_avoid_unnecessary_migrations_within_smt_domains.patch
-  v8_20230429_yu_c_chen_sched_fair_introduce_sis_current_to_wake_up_short_task_on_current_cpu.patch
-  PATCH-v3-platform-x86-asus-wmi-Fix-setting-RGB-mode-on-some-TUF-laptops.patch
   0001-platform-x86-asus-wmi-Fix-and-cleanup-custom-fan-cur.patch
 
-  #0001-platform-x86-asus-wmi-add-support-for-showing-charge.patch
-  #0002-platform-x86-asus-wmi-add-support-for-showing-middle.patch
-  #0003-platform-x86-asus-wmi-support-middle-fan-custom-curv.patch
-  #0004-platform-x86-asus-wmi-add-WMI-method-to-show-if-egpu.patch
   0005-platform-x86-asus-wmi-don-t-allow-eGPU-switching-if-.patch
   0006-platform-x86-asus-wmi-add-safety-checks-to-gpu-switc.patch
-  #0007-platform-x86-asus-wmi-support-setting-mini-LED-mode.patch
-  #0008-platform-x86-asus-wmi-expose-dGPU-and-CPU-tunables-f.patch
-  #0009-Fixes-a23870110a38-asus-wmi-add-support-for-showing-.patch
-  #0010-ALSA-hda-cs35l41-Support-systems-with-missing-_DSD-p.patch
-  #0011-ALSA-hda-cs35l41-Support-ASUS-2023-laptops-with-miss.patch
-  #0012-platform-x86-asus-wmi-corrections-to-egpu-safety-che.patch
-  #0013-platform-x86-asus-wmi-add-support-for-ASUS-screenpad.patch
 
   0001-platform-x86-asus-wmi-Support-2023-ROG-X16-tablet-mo.patch
   amd-tablet-sfh.patch
@@ -89,7 +67,6 @@ source=(
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
-  #"sys-kernel_arch-sources-g14_files-0049-ALSA-hda-realtek-Add-quirk-for-ASUS-M16-GU603H.patch"
 )
 
 validpgpkeys=(
