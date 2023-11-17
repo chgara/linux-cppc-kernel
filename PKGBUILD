@@ -1,5 +1,3 @@
-# Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
-
 pkgbase=linux-g14
 pkgver=6.6.1.arch1
 pkgrel=1
@@ -23,6 +21,7 @@ source=(
   "choose-gcc-optimization.sh"
 
   "sys-kernel_arch-sources-g14_files-0004-5.17+--more-uarches-for-kernel.patch"::"https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-5.17+.patch"
+  0001-ALSA-hda-realtek-Add-quirk-for-ASUS-ROG-G814Jx.patch
 
   0001-acpi-proc-idle-skip-dummy-wait.patch
 
@@ -31,37 +30,26 @@ source=(
   0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch
 
   0001-Revert-PCI-Add-a-REBAR-size-quirk-for-Sapphire-RX-56.patch
-  0001-constgran-v2.patch
+  0001-linux6.6.y-bore3.3.0.patch
   
   
   0032-Bluetooth-btusb-Add-a-new-PID-VID-0489-e0f6-for-MT7922.patch
   0035-Add_quirk_for_polling_the_KBD_port.patch
-  0036-Block_a_rogue_device_on_ASUS_TUF_A16.patch
 
   0001-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
   0002-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
 
-  v2-0001-platform-x86-asus-wmi-add-support-for-showing-cha.patch
-  v2-0002-platform-x86-asus-wmi-add-support-for-showing-mid.patch
-  v2-0003-platform-x86-asus-wmi-support-middle-fan-custom-c.patch
-  v2-0004-platform-x86-asus-wmi-add-WMI-method-to-show-if-e.patch
   v2-0005-platform-x86-asus-wmi-don-t-allow-eGPU-switching-.patch
   v2-0006-platform-x86-asus-wmi-add-safety-checks-to-gpu-sw.patch
-  v2-0007-platform-x86-asus-wmi-support-setting-mini-LED-mo.patch
-  v2-0008-platform-x86-asus-wmi-expose-dGPU-and-CPU-tunable.patch
 
   0038-mediatek-pci-reset.patch
   0040-workaround_hardware_decoding_amdgpu.patch
-
-  0001-platform-x86-asus-wmi-Fix-and-cleanup-custom-fan-cur.patch
 
   0005-platform-x86-asus-wmi-don-t-allow-eGPU-switching-if-.patch
   0006-platform-x86-asus-wmi-add-safety-checks-to-gpu-switc.patch
 
   0001-platform-x86-asus-wmi-Support-2023-ROG-X16-tablet-mo.patch
   amd-tablet-sfh.patch
-  v2-0001-ALSA-hda-cs35l41-Support-systems-with-missing-_DS.patch
-  #v2-0001-platform-x86-asus-wmi-corrections-to-egpu-safety-.patch
   v2-0002-ALSA-hda-cs35l41-Support-ASUS-2023-laptops-with-m.patch
   v6-0001-platform-x86-asus-wmi-add-support-for-ASUS-screen.patch
 
@@ -141,7 +129,7 @@ prepare() {
   echo "${pkgbase#linux}" > localversion.20-pkgname
   make defconfig
   make -s kernelrelease > version
-  make mrproper
+  _make mrproper
 
   local src
   for src in "${source[@]}"; do
@@ -155,14 +143,14 @@ prepare() {
   # if throw is defined we had a hard patch failure, propagate it and stop so we can address
   [[ -z "$_throw" ]]
 
-    # let user choose microarchitecture optimization in GCC
-  # this needs to run *after* `make olddefconfig` so that our newly added configuration macros exist
-  sh ${srcdir}/choose-gcc-optimization.sh $_microarchitecture
-
   echo "Setting config..."
   cp ../config .config
   _make olddefconfig
   diff -u ../config .config || :
+
+  # let user choose microarchitecture optimization in GCC
+  # this needs to run *after* `make olddefconfig` so that our newly added configuration macros exist
+  sh ${srcdir}/choose-gcc-optimization.sh $_microarchitecture
 
   echo "Prepared $pkgbase version $(<version)"
 
@@ -229,15 +217,27 @@ build() {
 
 _package() {
   pkgdesc="The $pkgdesc kernel and modules"
-  depends=(coreutils kmod initramfs)
-  optdepends=('crda: to set the correct wireless channels of your country'
-              'linux-firmware: firmware images needed for some devices')
-  provides=(VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE linux-rog)
-  replaces=(virtualbox-guest-modules-arch wireguard-arch)
+  depends=(
+    coreutils
+    initramfs
+    kmod
+  )
+  optdepends=(
+    'wireless-regdb: to set the correct wireless channels of your country'
+    'linux-firmware: firmware images needed for some devices'
+  )
+  provides=(
+    KSMBD-MODULE
+    VIRTUALBOX-GUEST-MODULES
+    WIREGUARD-MODULE
+  )
+  replaces=(
+    virtualbox-guest-modules-arch
+    wireguard-arch
+  )
 
   cd $_srcname
-  local kernver="$(<version)"
-  local modulesdir="$pkgdir/usr/lib/modules/$kernver"
+  local modulesdir="$pkgdir/usr/lib/modules/$(<version)"
 
   echo "Installing boot image..."
   # systemd expects to find the kernel here to allow hibernation
@@ -246,13 +246,14 @@ _package() {
 
   # Used by mkinitcpio to name the kernel
   echo "$pkgbase" | install -Dm644 /dev/stdin "$modulesdir/pkgbase"
-
+  echo "#!/bin/bash" > ignore_depmod
+  chmod +x ignore_depmod
   echo "Installing modules..."
-  _make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 \
-    DEPMOD=/doesnt/exist modules_install  # Suppress depmod
+  ZSTD_CLEVEL=19 _make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 \
+    DEPMOD=./ignore_depmod modules_install  # Suppress depmod
 
-  # remove build and source links
-  rm "$modulesdir"/{source,build}
+  # remove build link
+  rm "$modulesdir"/build || true
 }
 
 _package-headers() {
@@ -270,14 +271,11 @@ _package-headers() {
   install -Dt "$builddir/arch/x86" -m644 arch/x86/Makefile
   cp -t "$builddir" -a scripts
 
-  # add objtool for external module building and enabled VALIDATION_STACK option
+  # required when STACK_VALIDATION is enabled
   install -Dt "$builddir/tools/objtool" tools/objtool/objtool
 
   # required when DEBUG_INFO_BTF_MODULES is enabled
   install -Dt "$builddir/tools/bpf/resolve_btfids" tools/bpf/resolve_btfids/resolve_btfids
-
-  # add xfs and shmem for aufs building
-  mkdir -p "$builddir"/{fs/xfs,mm}
 
   echo "Installing headers..."
   cp -t "$builddir" -a include
@@ -287,10 +285,10 @@ _package-headers() {
   install -Dt "$builddir/drivers/md" -m644 drivers/md/*.h
   install -Dt "$builddir/net/mac80211" -m644 net/mac80211/*.h
 
-  # http://bugs.archlinux.org/task/13146
+  # https://bugs.archlinux.org/task/13146
   install -Dt "$builddir/drivers/media/i2c" -m644 drivers/media/i2c/msp3400-driver.h
 
-  # http://bugs.archlinux.org/task/20402
+  # https://bugs.archlinux.org/task/20402
   install -Dt "$builddir/drivers/media/usb/dvb-usb" -m644 drivers/media/usb/dvb-usb/*.h
   install -Dt "$builddir/drivers/media/dvb-frontends" -m644 drivers/media/dvb-frontends/*.h
   install -Dt "$builddir/drivers/media/tuners" -m644 drivers/media/tuners/*.h
@@ -318,7 +316,7 @@ _package-headers() {
   echo "Stripping build tools..."
   local file
   while read -rd '' file; do
-    case "$(file -bi "$file")" in
+    case "$(file -Sib "$file")" in
       application/x-sharedlib\;*)      # Libraries (.so)
         strip -v $STRIP_SHARED "$file" ;;
       application/x-archive\;*)        # Libraries (.a)

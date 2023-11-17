@@ -1,8 +1,8 @@
-From cc4d251f329fbb6af99e20d8372b4476fbb9179d Mon Sep 17 00:00:00 2001
+From 76556b655f7b50afe5c58006f44221900e5711a9 Mon Sep 17 00:00:00 2001
 From: "Luke D. Jones" <luke@ljones.dev>
 Date: Wed, 23 Aug 2023 11:05:59 +1200
-Subject: [PATCH v2 2/2] ALSA: hda: cs35l41: Support ASUS 2023 laptops with
- missing DSD
+Subject: [PATCH v2] ALSA: hda: cs35l41: Support ASUS 2023 laptops with missing
+ DSD
 
 Support adding the missing DSD properties required  for ASUS ROG 2023
 laptops and other ASUS laptops to properly utilise the cs35l41.
@@ -29,17 +29,23 @@ Signed-off-by: Jonathan LoBue <jlobue10@gmail.com>
 Co-developed-by: Luke D. Jones <luke@ljones.dev>
 Signed-off-by: Luke D. Jones <luke@ljones.dev>
 ---
- sound/pci/hda/cs35l41_hda_property.c | 53 ++++++++++++++++++++++++++++
- 1 file changed, 53 insertions(+)
+ sound/pci/hda/cs35l41_hda_property.c | 57 ++++++++++++++++++++++++++++
+ 1 file changed, 57 insertions(+)
 
 diff --git a/sound/pci/hda/cs35l41_hda_property.c b/sound/pci/hda/cs35l41_hda_property.c
-index 673f23257a09..0792c68d400f 100644
+index c83328971728..de0802859849 100644
 --- a/sound/pci/hda/cs35l41_hda_property.c
 +++ b/sound/pci/hda/cs35l41_hda_property.c
-@@ -43,6 +43,46 @@ static int lenovo_legion_no_acpi(struct cs35l41_hda *cs35l41, struct device *phy
- 	return 0;
- }
- 
+@@ -76,6 +76,49 @@ static int hp_vision_acpi_fix(struct cs35l41_hda *cs35l41, struct device *physde
+ 	hw_cfg->bst_ind = 1000;
+ 	hw_cfg->bst_ipk = 4500;
+ 	hw_cfg->bst_cap = 24;
++
++	hw_cfg->valid = true;
++
++	return 0;
++}
++
 +/*
 + * The CSC3551 is used in almost the entire ROG laptop range in 2023, this is likely to
 + * also include many non ROG labelled laptops. It is also used with either I2C connection or
@@ -70,23 +76,20 @@ index 673f23257a09..0792c68d400f 100644
 +	if (strcmp(cs35l41->acpi_subsystem_id, "10431473") == 0
 +		|| strcmp(cs35l41->acpi_subsystem_id, "10431483") == 0
 +		|| strcmp(cs35l41->acpi_subsystem_id, "10431493") == 0
-+	    	|| strcmp(cs35l41->acpi_subsystem_id, "10431E02") == 0) {
++		|| strcmp(cs35l41->acpi_subsystem_id, "10431CAF") == 0
++		|| strcmp(cs35l41->acpi_subsystem_id, "10431CCF") == 0
++		|| strcmp(cs35l41->acpi_subsystem_id, "10431E02") == 0) {
 +		reset_gpio = 1;
 +	}
 +	cs35l41->reset_gpio = gpiod_get_index(physdev, NULL, reset_gpio, GPIOD_OUT_HIGH);
 +
-+	hw_cfg->valid = true;
-+
-+	return 0;
-+}
-+
- struct cs35l41_prop_model {
- 	const char *hid;
- 	const char *ssid;
-@@ -53,6 +93,19 @@ struct cs35l41_prop_model {
- const struct cs35l41_prop_model cs35l41_prop_model_table[] = {
+ 	hw_cfg->valid = true;
+ 
+ 	return 0;
+@@ -92,6 +135,20 @@ static const struct cs35l41_prop_model cs35l41_prop_model_table[] = {
  	{ "CLSA0100", NULL, lenovo_legion_no_acpi },
  	{ "CLSA0101", NULL, lenovo_legion_no_acpi },
+ 	{ "CSC3551", "103C89C6", hp_vision_acpi_fix },
 +	{ "CSC3551", "10431433", asus_rog_2023_no_acpi }, // GS650P   i2c
 +	{ "CSC3551", "10431463", asus_rog_2023_no_acpi }, // GA402X/N i2c, rst=0
 +	{ "CSC3551", "10431473", asus_rog_2023_no_acpi }, // GU604V   spi, rst=1
@@ -95,8 +98,9 @@ index 673f23257a09..0792c68d400f 100644
 +	{ "CSC3551", "10431573", asus_rog_2023_no_acpi }, // GZ301V   spi, rst=0
 +	{ "CSC3551", "104317F3", asus_rog_2023_no_acpi }, // ROG ALLY i2c, rst=0
 +	{ "CSC3551", "10431B93", asus_rog_2023_no_acpi }, // G614J    spi, rst=0
-+	{ "CSC3551", "10431CAF", asus_rog_2023_no_acpi }, // G634J    spi, rst=0
 +	{ "CSC3551", "10431C9F", asus_rog_2023_no_acpi }, // G614JI   spi, rst=0
++	{ "CSC3551", "10431CAF", asus_rog_2023_no_acpi }, // G634J    spi, rst=1
++	{ "CSC3551", "10431CCF", asus_rog_2023_no_acpi }, // G814J    spi, rst=1
 +	{ "CSC3551", "10431D1F", asus_rog_2023_no_acpi }, // G713P    i2c, rst=0
 +	{ "CSC3551", "10431E02", asus_rog_2023_no_acpi }, // UX3042Z  spi, rst=1
 +	{ "CSC3551", "10431F1F", asus_rog_2023_no_acpi }, // H7604JV  spi, rst=0
@@ -105,4 +109,3 @@ index 673f23257a09..0792c68d400f 100644
  
 -- 
 2.41.0
-
