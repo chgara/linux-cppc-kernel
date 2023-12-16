@@ -1,5 +1,5 @@
 pkgbase=linux-g14
-pkgver=6.6.1.arch1
+pkgver=6.6.6.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -29,7 +29,7 @@ source=(
   
   0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch
 
-  0001-Revert-PCI-Add-a-REBAR-size-quirk-for-Sapphire-RX-56.patch
+  
   0001-linux6.6.y-bore3.3.0.patch
   
   
