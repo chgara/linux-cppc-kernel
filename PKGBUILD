@@ -1,5 +1,5 @@
 pkgbase=linux-g14
-pkgver=6.6.6.arch1
+pkgver=6.7.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -21,8 +21,6 @@ source=(
   "choose-gcc-optimization.sh"
 
   "sys-kernel_arch-sources-g14_files-0004-5.17+--more-uarches-for-kernel.patch"::"https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-5.17+.patch"
-  0001-ALSA-hda-realtek-Add-quirk-for-ASUS-ROG-G814Jx.patch
-
   0001-acpi-proc-idle-skip-dummy-wait.patch
 
   0001-platform-x86-asus-wmi-Add-safety-checks-to-dgpu-egpu.patch
@@ -30,7 +28,7 @@ source=(
   0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch
 
   
-  0001-linux6.6.y-bore3.3.0.patch
+  0001-linux6.7.y-bore4.0.0.patch
   
   
   0032-Bluetooth-btusb-Add-a-new-PID-VID-0489-e0f6-for-MT7922.patch
@@ -50,8 +48,7 @@ source=(
 
   0001-platform-x86-asus-wmi-Support-2023-ROG-X16-tablet-mo.patch
   amd-tablet-sfh.patch
-  v2-0002-ALSA-hda-cs35l41-Support-ASUS-2023-laptops-with-m.patch
-  v6-0001-platform-x86-asus-wmi-add-support-for-ASUS-screen.patch
+
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
