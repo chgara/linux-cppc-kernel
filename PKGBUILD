@@ -1,6 +1,6 @@
 pkgbase=linux-g14
-pkgver=6.7.arch1
-pkgrel=1
+pkgver=6.7.2.arch1
+pkgrel=2.1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://gitlab.com/dragonn/linux-g14.git"
