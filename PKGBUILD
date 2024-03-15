@@ -1,6 +1,6 @@
 pkgbase=linux-g14
-pkgver=6.7.2.arch1
-pkgrel=2.1
+pkgver=6.7.8.arch1
+pkgrel=1.1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://gitlab.com/dragonn/linux-g14.git"
@@ -20,7 +20,7 @@ source=(
   config         # the main kernel config file
   "choose-gcc-optimization.sh"
 
-  "sys-kernel_arch-sources-g14_files-0004-5.17+--more-uarches-for-kernel.patch"::"https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-5.17+.patch"
+  "sys-kernel_arch-sources-g14_files-0004-5.17+--more-uarches-for-kernel.patch"::"https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-6.1.79-6.8-rc3.patch"
   0001-acpi-proc-idle-skip-dummy-wait.patch
 
   0001-platform-x86-asus-wmi-Add-safety-checks-to-dgpu-egpu.patch
