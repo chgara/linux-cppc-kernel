@@ -1,5 +1,5 @@
 pkgbase=linux-g14
-pkgver=6.7.8.arch1
+pkgver=6.8.1.arch1
 pkgrel=1.1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -20,7 +20,7 @@ source=(
   config         # the main kernel config file
   "choose-gcc-optimization.sh"
 
-  "sys-kernel_arch-sources-g14_files-0004-5.17+--more-uarches-for-kernel.patch"::"https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-6.1.79-6.8-rc3.patch"
+  "sys-kernel_arch-sources-g14_files-0004-more-uarches-for-kernel-6.8-rc4+.patch"::"https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-6.8-rc4%2B.patch"
   0001-acpi-proc-idle-skip-dummy-wait.patch
 
   0001-platform-x86-asus-wmi-Add-safety-checks-to-dgpu-egpu.patch
@@ -28,7 +28,7 @@ source=(
   0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch
 
   
-  0001-linux6.7.y-bore4.0.0.patch
+  0001-linux6.8.y-bore4.5.0.patch
   
   
   0032-Bluetooth-btusb-Add-a-new-PID-VID-0489-e0f6-for-MT7922.patch
@@ -48,6 +48,13 @@ source=(
 
   0001-platform-x86-asus-wmi-Support-2023-ROG-X16-tablet-mo.patch
   amd-tablet-sfh.patch
+  fix_amd_eDP_HDR_flickering.patch
+
+  0001-platform-x86-asus-wmi-add-support-for-2024-ROG-Mini-.patch
+  0002-platform-x86-asus-wmi-add-support-for-Vivobook-GPU-M.patch
+  0003-platform-x86-asus-wmi-add-support-variant-of-TUF-RGB.patch
+  0004-platform-x86-asus-wmi-support-toggling-POST-sound.patch
+  0005-platform-x86-asus-wmi-store-a-min-default-for-ppt-op.patch
 
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
