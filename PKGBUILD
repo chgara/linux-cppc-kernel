@@ -1,5 +1,5 @@
 pkgbase=linux-g14
-pkgver=6.8.1.arch1
+pkgver=6.8.2.arch2
 pkgrel=1.1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -21,9 +21,22 @@ source=(
   "choose-gcc-optimization.sh"
 
   "sys-kernel_arch-sources-g14_files-0004-more-uarches-for-kernel-6.8-rc4+.patch"::"https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-6.8-rc4%2B.patch"
+  
+
+
   0001-acpi-proc-idle-skip-dummy-wait.patch
 
-  0001-platform-x86-asus-wmi-Add-safety-checks-to-dgpu-egpu.patch
+  #0001-platform-x86-asus-wmi-Add-safety-checks-to-dgpu-egpu.patch
+
+  v1-0001-platform-x86-asus-wmi-add-support-for-2024-ROG-Mi.patch
+  v1-0002-platform-x86-asus-wmi-add-support-for-Vivobook-GP.patch
+  v1-0003-platform-x86-asus-wmi-add-support-variant-of-TUF-.patch
+  v1-0004-platform-x86-asus-wmi-support-toggling-POST-sound.patch
+  v1-0005-platform-x86-asus-wmi-store-a-min-default-for-ppt.patch
+  v1-0006-platform-x86-asus-wmi-adjust-formatting-of-ppt-na.patch
+  v1-0007-platform-x86-asus-wmi-ROG-Ally-increase-wait-time.patch
+  v1-0008-platform-x86-asus-wmi-Add-support-for-MCU-powersa.patch
+  v1-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch
   
   0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch
 
@@ -38,23 +51,33 @@ source=(
   0002-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
 
   v2-0005-platform-x86-asus-wmi-don-t-allow-eGPU-switching-.patch
-  v2-0006-platform-x86-asus-wmi-add-safety-checks-to-gpu-sw.patch
+  #v2-0006-platform-x86-asus-wmi-add-safety-checks-to-gpu-sw.patch
 
   0038-mediatek-pci-reset.patch
   0040-workaround_hardware_decoding_amdgpu.patch
 
-  0005-platform-x86-asus-wmi-don-t-allow-eGPU-switching-if-.patch
-  0006-platform-x86-asus-wmi-add-safety-checks-to-gpu-switc.patch
+  #0005-platform-x86-asus-wmi-don-t-allow-eGPU-switching-if-.patch
+  #0006-platform-x86-asus-wmi-add-safety-checks-to-gpu-switc.patch
 
   0001-platform-x86-asus-wmi-Support-2023-ROG-X16-tablet-mo.patch
   amd-tablet-sfh.patch
   fix_amd_eDP_HDR_flickering.patch
 
-  0001-platform-x86-asus-wmi-add-support-for-2024-ROG-Mini-.patch
-  0002-platform-x86-asus-wmi-add-support-for-Vivobook-GPU-M.patch
-  0003-platform-x86-asus-wmi-add-support-variant-of-TUF-RGB.patch
-  0004-platform-x86-asus-wmi-support-toggling-POST-sound.patch
-  0005-platform-x86-asus-wmi-store-a-min-default-for-ppt-op.patch
+  #0001-platform-x86-asus-wmi-add-support-for-2024-ROG-Mini-.patch
+  #0002-platform-x86-asus-wmi-add-support-for-Vivobook-GPU-M.patch
+  #0003-platform-x86-asus-wmi-add-support-variant-of-TUF-RGB.patch
+  #0004-platform-x86-asus-wmi-support-toggling-POST-sound.patch
+  #0005-platform-x86-asus-wmi-store-a-min-default-for-ppt-op.patch
+
+  #0041-add-support-variant-of-TUF-RGB.patch
+
+
+
+
+  0001-HID-asus-fix-more-n-key-report-descriptors-if-n-key-.patch
+  0002-HID-asus-make-asus_kbd_init-generic-remove-rog_nkey_.patch
+  0003-HID-asus-add-ROG-Ally-N-Key-ID-and-keycodes.patch
+  0004-HID-asus-add-ROG-Z13-lightbar.patch
 
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
