@@ -1,8 +1,11 @@
-From 6597ecfcc2836fbcce530c2e146965457abacabd Mon Sep 17 00:00:00 2001
+From 4f772c2affe17d50c791d61c72662df81b18884a Mon Sep 17 00:00:00 2001
 From: "Luke D. Jones" <luke@ljones.dev>
 Date: Mon, 25 Mar 2024 11:14:28 +1300
-Subject: [PATCH v1 7/9] platform/x86: asus-wmi: ROG Ally increase wait time,
+Subject: [PATCH v4 7/9] platform/x86: asus-wmi: ROG Ally increase wait time,
  allow MCU powersave
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 The previous work to allow the MCU to be resumed correctly after sleep
 and resume tried to take the shortest possible time. However as work
@@ -20,16 +23,17 @@ to allow a proper disconnect and disable, and the same amount of time on
 resume is required to prevent a rapid disconnect/reconnect happening on
 seemingly random occasions. To be safe the time is now 1500ms for msleep.
 
+Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
 Signed-off-by: Luke D. Jones <luke@ljones.dev>
 ---
  drivers/platform/x86/asus-wmi.c | 12 ++----------
  1 file changed, 2 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/platform/x86/asus-wmi.c b/drivers/platform/x86/asus-wmi.c
-index 2ff78e194801..ec249eca0d94 100644
+index 976e26c82f80..ab98f91e573c 100644
 --- a/drivers/platform/x86/asus-wmi.c
 +++ b/drivers/platform/x86/asus-wmi.c
-@@ -129,7 +129,7 @@ module_param(fnlock_default, bool, 0444);
+@@ -140,7 +140,7 @@ module_param(fnlock_default, bool, 0444);
  /* Controls the power state of the USB0 hub on ROG Ally which input is on */
  #define ASUS_USB0_PWR_EC0_CSEE "\\_SB.PCI0.SBRG.EC0.CSEE"
  /* 300ms so far seems to produce a reliable result on AC and battery */
@@ -38,7 +42,7 @@ index 2ff78e194801..ec249eca0d94 100644
  
  static const char * const ashs_ids[] = { "ATK4001", "ATK4002", NULL };
  
-@@ -4814,6 +4814,7 @@ static int asus_hotk_resume_early(struct device *device)
+@@ -4829,6 +4829,7 @@ static int asus_hotk_resume_early(struct device *device)
  	struct asus_wmi *asus = dev_get_drvdata(device);
  
  	if (asus->ally_mcu_usb_switch) {
@@ -46,7 +50,7 @@ index 2ff78e194801..ec249eca0d94 100644
  		if (ACPI_FAILURE(acpi_execute_simple_method(NULL, ASUS_USB0_PWR_EC0_CSEE, 0xB8)))
  			dev_err(device, "ROG Ally MCU failed to connect USB dev\n");
  		else
-@@ -4825,17 +4826,8 @@ static int asus_hotk_resume_early(struct device *device)
+@@ -4840,17 +4841,8 @@ static int asus_hotk_resume_early(struct device *device)
  static int asus_hotk_prepare(struct device *device)
  {
  	struct asus_wmi *asus = dev_get_drvdata(device);

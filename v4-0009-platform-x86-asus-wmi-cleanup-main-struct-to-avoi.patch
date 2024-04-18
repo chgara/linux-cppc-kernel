@@ -1,23 +1,27 @@
-From a8820c0337313f9f9dc41d2ce43fe20b9b53cf98 Mon Sep 17 00:00:00 2001
+From fb8027a2ca91fff199a21300ca2d2afaf264e1d3 Mon Sep 17 00:00:00 2001
 From: "Luke D. Jones" <luke@ljones.dev>
 Date: Mon, 25 Mar 2024 17:14:00 +1300
-Subject: [PATCH v1 9/9] platform/x86: asus-wmi: cleanup main struct to avoid
+Subject: [PATCH v4 9/9] platform/x86: asus-wmi: cleanup main struct to avoid
  some holes
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 Reorganises some attr-available calls to remove a few unrequired
 booleans in the main driver struct which combined with some
 reorganisation prevents a series of large holes seen with pahole.
 
+Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
 Signed-off-by: Luke D. Jones <luke@ljones.dev>
 ---
  drivers/platform/x86/asus-wmi.c | 17 ++++++-----------
  1 file changed, 6 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/platform/x86/asus-wmi.c b/drivers/platform/x86/asus-wmi.c
-index a6b648457908..7163cce7079c 100644
+index d06d9e0c498c..2d2b4eca7fd8 100644
 --- a/drivers/platform/x86/asus-wmi.c
 +++ b/drivers/platform/x86/asus-wmi.c
-@@ -243,6 +243,9 @@ struct asus_wmi {
+@@ -254,6 +254,9 @@ struct asus_wmi {
  	u32 tablet_switch_dev_id;
  	bool tablet_switch_inverted;
  
@@ -27,7 +31,7 @@ index a6b648457908..7163cce7079c 100644
  	enum fan_type fan_type;
  	enum fan_type gpu_fan_type;
  	enum fan_type mid_fan_type;
-@@ -255,9 +258,7 @@ struct asus_wmi {
+@@ -266,9 +269,7 @@ struct asus_wmi {
  	u8 fan_boost_mode_mask;
  	u8 fan_boost_mode;
  
@@ -37,7 +41,7 @@ index a6b648457908..7163cce7079c 100644
  	bool dgpu_disable_available;
  	u32 gpu_mux_dev;
  
-@@ -298,9 +299,6 @@ struct asus_wmi {
+@@ -309,9 +310,6 @@ struct asus_wmi {
  
  	bool fnlock_locked;
  
@@ -47,7 +51,7 @@ index a6b648457908..7163cce7079c 100644
  	struct asus_wmi_debug debug;
  
  	struct asus_wmi_driver *driver;
-@@ -4373,11 +4371,11 @@ static umode_t asus_sysfs_is_visible(struct kobject *kobj,
+@@ -4391,11 +4389,11 @@ static umode_t asus_sysfs_is_visible(struct kobject *kobj,
  	else if (attr == &dev_attr_als_enable.attr)
  		devid = ASUS_WMI_DEVID_ALS_ENABLE;
  	else if (attr == &dev_attr_charge_mode.attr)
@@ -61,7 +65,7 @@ index a6b648457908..7163cce7079c 100644
  	else if (attr == &dev_attr_dgpu_disable.attr)
  		ok = asus->dgpu_disable_available;
  	else if (attr == &dev_attr_gpu_mux_mode.attr)
-@@ -4405,7 +4403,7 @@ static umode_t asus_sysfs_is_visible(struct kobject *kobj,
+@@ -4423,7 +4421,7 @@ static umode_t asus_sysfs_is_visible(struct kobject *kobj,
  	else if (attr == &dev_attr_boot_sound.attr)
  		devid = ASUS_WMI_DEVID_BOOT_SOUND;
  	else if (attr == &dev_attr_panel_od.attr)
@@ -70,7 +74,7 @@ index a6b648457908..7163cce7079c 100644
  	else if (attr == &dev_attr_mini_led_mode.attr)
  		ok = asus->mini_led_dev_id != 0;
  	else if (attr == &dev_attr_available_mini_led_mode.attr)
-@@ -4656,12 +4654,9 @@ static int asus_wmi_add(struct platform_device *pdev)
+@@ -4674,12 +4672,9 @@ static int asus_wmi_add(struct platform_device *pdev)
  	asus->nv_dynamic_boost = 5;
  	asus->nv_temp_target = 75;
  
