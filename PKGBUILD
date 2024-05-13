@@ -1,6 +1,6 @@
 pkgbase=linux-g14
-pkgver=6.8.6.arch1
-pkgrel=1.1
+pkgver=6.8.9.arch1
+pkgrel=2.1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://gitlab.com/dragonn/linux-g14.git"
@@ -51,7 +51,7 @@ source=(
   0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch
 
   
-  0001-linux6.8.y-bore4.5.0.patch
+  
   
   
   0032-Bluetooth-btusb-Add-a-new-PID-VID-0489-e0f6-for-MT7922.patch
@@ -73,7 +73,11 @@ source=(
   #0002-HID-asus-make-asus_kbd_init-generic-remove-rog_nkey_.patch
   #0003-HID-asus-add-ROG-Ally-N-Key-ID-and-keycodes.patch
   #0004-HID-asus-add-ROG-Z13-lightbar.patch
+  0001-hid-asus-use-hid-for-brightness-control-on-keyboard.patch
 
+  "0001-sched-ext.patch"::"https://raw.githubusercontent.com/cachyos/kernel-patches/master/6.8/sched/0001-sched-ext.patch"
+
+  #0001-linux6.8.y-bore5.1.0.patch
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
@@ -209,6 +213,10 @@ prepare() {
 
   # try to fix stuttering on some ROG laptops
   scripts/config --disable CONFIG_HW_RANDOM_TPM
+
+  # enable SCHED_CLASS_EXT
+  scripts/config --enable CONFIG_SCHED_CLASS_EXT
+
 
   # HACK: forcibly fixup CONFIG_CMDLINE here as using scripts/config mangles escaped quotes
   sed -i 's#makepkgplaceholderyolo#ibt=off pm_debug_messages amd_pmc.dyndbg=\\"+p\\" acpi.dyndbg=\\"file drivers/acpi/x86/s2idle.c +p\\"#' .config
