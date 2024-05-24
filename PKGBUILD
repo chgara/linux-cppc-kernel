@@ -1,5 +1,5 @@
 pkgbase=linux-g14
-pkgver=6.8.9.arch1
+pkgver=6.9.1.arch1
 pkgrel=2.1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -73,9 +73,14 @@ source=(
   #0002-HID-asus-make-asus_kbd_init-generic-remove-rog_nkey_.patch
   #0003-HID-asus-add-ROG-Ally-N-Key-ID-and-keycodes.patch
   #0004-HID-asus-add-ROG-Z13-lightbar.patch
-  0001-hid-asus-use-hid-for-brightness-control-on-keyboard.patch
 
-  "0001-sched-ext.patch"::"https://raw.githubusercontent.com/cachyos/kernel-patches/master/6.8/sched/0001-sched-ext.patch"
+  "0001-sched-ext.patch"::"https://raw.githubusercontent.com/cachyos/kernel-patches/master/6.9/sched/0001-sched-ext.patch"
+
+  0001-ALSA-PCI-HDA-Adjust-G814JZR-to-use-SPI-init-for-amp.patch
+  0002-hid-asus-use-hid-for-brightness-control-on-keyboard.patch
+  0003-Debugging.patch
+  0004-asus-wmi-don-t-error-out-if-platform_profile-already.patch
+  0005-hid-asus-add-USB_DEVICE_ID_ASUSTEK_DUO_KEYBOARD.patch
 
   #0001-linux6.8.y-bore5.1.0.patch
 

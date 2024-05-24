@@ -1,7 +1,7 @@
-From d32f07325d48eba03fbccaed911faf092a032174 Mon Sep 17 00:00:00 2001
+From 8506057890751dc616cb6cb18c7fc3c5c90bc21e Mon Sep 17 00:00:00 2001
 From: "Luke D. Jones" <luke@ljones.dev>
 Date: Mon, 13 May 2024 19:20:04 +1200
-Subject: [PATCH] hid-asus: use hid for brightness control on keyboard
+Subject: [PATCH 2/5] hid-asus: use hid for brightness control on keyboard
 
 Signed-off-by: Luke D. Jones <luke@ljones.dev>
 ---
@@ -131,5 +131,5 @@ index 3eb5cd6773ad..30216cc57505 100644
 +
  #endif	/* __PLATFORM_DATA_X86_ASUS_WMI_H */
 -- 
-2.45.0
+2.45.1
 
