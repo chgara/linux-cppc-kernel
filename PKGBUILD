@@ -1,6 +1,6 @@
 pkgbase=linux-g14
-pkgver=6.9.1.arch1
-pkgrel=2.1
+pkgver=6.9.2.arch1
+pkgrel=1.1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://gitlab.com/dragonn/linux-g14.git"
@@ -34,17 +34,11 @@ source=(
   v4-0008-platform-x86-asus-wmi-Add-support-for-MCU-powersa.patch
   v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch
 
-  #0001-ALSA-hda-realtek-cs35l41-Support-ASUS-ROG-G634JYR.patch
-  #0001-ALSA-hda-realtek-gu605-ga403.patch
   0001-HID-asus-fix-more-n-key-report-descriptors-if-n-key-.patch
-  #0001-platform-x86-asus-wmi-add-support-for-2024-ROG-Mini-.patch
   0001-platform-x86-asus-wmi-add-support-for-vivobook-fan-p.patch
   0002-HID-asus-make-asus_kbd_init-generic-remove-rog_nkey_.patch
-  #0002-platform-x86-asus-wmi-add-support-for-Vivobook-GPU-M.patch
   0003-HID-asus-add-ROG-Ally-N-Key-ID-and-keycodes.patch
-  #0003-platform-x86-asus-wmi-add-support-variant-of-TUF-RGB.patch
   0004-HID-asus-add-ROG-Z13-lightbar.patch
-  #0004-platform-x86-asus-wmi-support-toggling-POST-sound.patch
 
 
   
@@ -78,9 +72,16 @@ source=(
 
   0001-ALSA-PCI-HDA-Adjust-G814JZR-to-use-SPI-init-for-amp.patch
   0002-hid-asus-use-hid-for-brightness-control-on-keyboard.patch
-  0003-Debugging.patch
-  0004-asus-wmi-don-t-error-out-if-platform_profile-already.patch
-  0005-hid-asus-add-USB_DEVICE_ID_ASUSTEK_DUO_KEYBOARD.patch
+  0003-hid-asus-add-USB_DEVICE_ID_ASUSTEK_DUO_KEYBOARD.patch
+  0004-Debugging.patch
+  0005-asus-wmi-don-t-error-out-if-platform_profile-already.patch
+  0006-asus-wmi-min-max-for-ROG-tunables-defaults.patch
+  0007-asus-wmi-reduce-code-duplication.patch
+  0008-asus-wmi-add-panel-fhd.patch
+  0009-asus-wmi-use-WMI_SIMPLE_SHOW-in-some-more-places.patch
+  0010-asus-wmi-enable-disable-cores.patch
+  0011-asus-wmi-apu_mem-setting.patch
+  0012-asus-wmi-dgpu-tgp.patch
 
   #0001-linux6.8.y-bore5.1.0.patch
 
