@@ -1,5 +1,5 @@
 pkgbase=linux-g14
-pkgver=6.9.2.arch1
+pkgver=6.9.3.arch1
 pkgrel=1.1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -34,19 +34,28 @@ source=(
   v4-0008-platform-x86-asus-wmi-Add-support-for-MCU-powersa.patch
   v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch
 
-  0001-HID-asus-fix-more-n-key-report-descriptors-if-n-key-.patch
   0001-platform-x86-asus-wmi-add-support-for-vivobook-fan-p.patch
+
+  0001-HID-asus-fix-more-n-key-report-descriptors-if-n-key-.patch
   0002-HID-asus-make-asus_kbd_init-generic-remove-rog_nkey_.patch
   0003-HID-asus-add-ROG-Ally-N-Key-ID-and-keycodes.patch
   0004-HID-asus-add-ROG-Z13-lightbar.patch
 
+  0001-ALSA-hda-realtek-Adjust-G814JZR-to-use-SPI-init-for-.patch
+  0001-platform-x86-asus-wmi-add-debug-print-in-more-key-pl.patch
+  0002-platform-x86-asus-wmi-don-t-fail-if-platform_profile.patch
+  0003-asus-bios-refactor-existing-tunings-in-to-asus-bios-.patch
+  0004-asus-bios-add-panel-hd-control.patch
+  0005-asus-bios-add-dgpu-tgp-control.patch
+  0006-asus-bios-add-apu-mem.patch
+  0007-asus-bios-add-core-count-control.patch
+  #0008-asus-wmi-deprecate-bios-features.patch
+  v2-0001-hid-asus-use-hid-for-brightness-control-on-keyboa.patch
+  0003-platform-x86-asus-wmi-add-macros-and-expose-min-max-.patch
+
 
   
   0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch
-
-  
-  
-  
   
   0032-Bluetooth-btusb-Add-a-new-PID-VID-0489-e0f6-for-MT7922.patch
   0035-Add_quirk_for_polling_the_KBD_port.patch
@@ -61,29 +70,11 @@ source=(
 
   0001-platform-x86-asus-wmi-Support-2023-ROG-X16-tablet-mo.patch
   amd-tablet-sfh.patch
-  #fix_amd_eDP_HDR_flickering.patch
-
-  #0001-HID-asus-fix-more-n-key-report-descriptors-if-n-key-.patch
-  #0002-HID-asus-make-asus_kbd_init-generic-remove-rog_nkey_.patch
-  #0003-HID-asus-add-ROG-Ally-N-Key-ID-and-keycodes.patch
-  #0004-HID-asus-add-ROG-Z13-lightbar.patch
 
   "0001-sched-ext.patch"::"https://raw.githubusercontent.com/cachyos/kernel-patches/master/6.9/sched/0001-sched-ext.patch"
 
-  0001-ALSA-PCI-HDA-Adjust-G814JZR-to-use-SPI-init-for-amp.patch
-  0002-hid-asus-use-hid-for-brightness-control-on-keyboard.patch
   0003-hid-asus-add-USB_DEVICE_ID_ASUSTEK_DUO_KEYBOARD.patch
-  0004-Debugging.patch
   0005-asus-wmi-don-t-error-out-if-platform_profile-already.patch
-  0006-asus-wmi-min-max-for-ROG-tunables-defaults.patch
-  0007-asus-wmi-reduce-code-duplication.patch
-  0008-asus-wmi-add-panel-fhd.patch
-  0009-asus-wmi-use-WMI_SIMPLE_SHOW-in-some-more-places.patch
-  0010-asus-wmi-enable-disable-cores.patch
-  0011-asus-wmi-apu_mem-setting.patch
-  0012-asus-wmi-dgpu-tgp.patch
-
-  #0001-linux6.8.y-bore5.1.0.patch
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
@@ -157,7 +148,7 @@ prepare() {
     src="${src##*/}"
     [[ $src = *.patch ]] || continue
     msg2 "Applying patch $src..."
-    patch -Np1 < "../$src"
+    patch -Np1 -F150 < "../$src"
   done
 
   # if throw is defined we had a hard patch failure, propagate it and stop so we can address

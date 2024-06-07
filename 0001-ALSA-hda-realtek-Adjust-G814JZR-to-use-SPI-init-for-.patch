@@ -1,7 +1,11 @@
-From 1ab8a72e184cf36816ca87ff5ddffaf82af1260e Mon Sep 17 00:00:00 2001
+From 78aa6bc3034ed2fbae15e4b721d3e8b1a11cdb11 Mon Sep 17 00:00:00 2001
 From: "Luke D. Jones" <luke@ljones.dev>
 Date: Wed, 15 May 2024 11:51:37 +1200
-Subject: [PATCH 1/5] ALSA: PCI: HDA Adjust G814JZR to use SPI init for amp
+Subject: [PATCH 01/11] ALSA: hda/realtek: Adjust G814JZR to use SPI init for
+ amp
+
+The 2024 ASUS ROG G814J model is much the same as the 2023 model
+and the 2023 16" version. We can use the same Cirrus Amp quirk.
 
 Signed-off-by: Luke D. Jones <luke@ljones.dev>
 ---
