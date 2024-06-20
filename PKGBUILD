@@ -1,5 +1,5 @@
 pkgbase=linux-g14
-pkgver=6.9.3.arch1
+pkgver=6.9.5.arch1
 pkgrel=1.1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -24,6 +24,8 @@ source=(
 
   0001-acpi-proc-idle-skip-dummy-wait.patch
 
+  0042-v4-0-1-platform-x86-asus-wmi-add-support-for-vivobook-fan-profiles.patch
+
   v4-0001-platform-x86-asus-wmi-add-support-for-2024-ROG-Mi.patch
   v4-0002-platform-x86-asus-wmi-add-support-for-Vivobook-GP.patch
   v4-0003-platform-x86-asus-wmi-add-support-variant-of-TUF-.patch
@@ -34,14 +36,13 @@ source=(
   v4-0008-platform-x86-asus-wmi-Add-support-for-MCU-powersa.patch
   v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch
 
-  0001-platform-x86-asus-wmi-add-support-for-vivobook-fan-p.patch
+  #0001-platform-x86-asus-wmi-add-support-for-vivobook-fan-p.patch
 
   0001-HID-asus-fix-more-n-key-report-descriptors-if-n-key-.patch
   0002-HID-asus-make-asus_kbd_init-generic-remove-rog_nkey_.patch
   0003-HID-asus-add-ROG-Ally-N-Key-ID-and-keycodes.patch
   0004-HID-asus-add-ROG-Z13-lightbar.patch
 
-  0001-ALSA-hda-realtek-Adjust-G814JZR-to-use-SPI-init-for-.patch
   0001-platform-x86-asus-wmi-add-debug-print-in-more-key-pl.patch
   0002-platform-x86-asus-wmi-don-t-fail-if-platform_profile.patch
   0003-asus-bios-refactor-existing-tunings-in-to-asus-bios-.patch
@@ -52,8 +53,6 @@ source=(
   #0008-asus-wmi-deprecate-bios-features.patch
   v2-0001-hid-asus-use-hid-for-brightness-control-on-keyboa.patch
   0003-platform-x86-asus-wmi-add-macros-and-expose-min-max-.patch
-
-
   
   0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch
   
@@ -63,18 +62,14 @@ source=(
   0001-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
   0002-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch
 
-  v2-0005-platform-x86-asus-wmi-don-t-allow-eGPU-switching-.patch
-
   0038-mediatek-pci-reset.patch
   0040-workaround_hardware_decoding_amdgpu.patch
 
-  0001-platform-x86-asus-wmi-Support-2023-ROG-X16-tablet-mo.patch
   amd-tablet-sfh.patch
+
 
   "0001-sched-ext.patch"::"https://raw.githubusercontent.com/cachyos/kernel-patches/master/6.9/sched/0001-sched-ext.patch"
 
-  0003-hid-asus-add-USB_DEVICE_ID_ASUSTEK_DUO_KEYBOARD.patch
-  0005-asus-wmi-don-t-error-out-if-platform_profile-already.patch
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
