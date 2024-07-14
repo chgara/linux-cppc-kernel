@@ -1,5 +1,5 @@
 pkgbase=linux-g14
-pkgver=6.9.5.arch1
+pkgver=6.9.9.arch1
 pkgrel=1.1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -35,10 +35,11 @@ source=(
   v4-0007-platform-x86-asus-wmi-ROG-Ally-increase-wait-time.patch
   v4-0008-platform-x86-asus-wmi-Add-support-for-MCU-powersa.patch
   v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch
+  0001-Fixes-ae834a549ec1-platform-x86-asus-wmi-add-support.patch
 
   #0001-platform-x86-asus-wmi-add-support-for-vivobook-fan-p.patch
 
-  0001-HID-asus-fix-more-n-key-report-descriptors-if-n-key-.patch
+  #0001-HID-asus-fix-more-n-key-report-descriptors-if-n-key-.patch
   0002-HID-asus-make-asus_kbd_init-generic-remove-rog_nkey_.patch
   0003-HID-asus-add-ROG-Ally-N-Key-ID-and-keycodes.patch
   0004-HID-asus-add-ROG-Z13-lightbar.patch
