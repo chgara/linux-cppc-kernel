@@ -1,6 +1,6 @@
 pkgbase=linux-g14
 pkgver=6.9.9.arch1
-pkgrel=1.1
+pkgrel=1.2
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://gitlab.com/dragonn/linux-g14.git"
@@ -36,6 +36,7 @@ source=(
   v4-0008-platform-x86-asus-wmi-Add-support-for-MCU-powersa.patch
   v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch
   0001-Fixes-ae834a549ec1-platform-x86-asus-wmi-add-support.patch
+  0001-ALSA-hda-realtek-cs35l41-Fixup-remaining-asus-strix-.patch
 
   #0001-platform-x86-asus-wmi-add-support-for-vivobook-fan-p.patch
 
