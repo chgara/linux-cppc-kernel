@@ -1,6 +1,6 @@
 pkgbase=linux-g14
-pkgver=6.9.9.arch1
-pkgrel=1.2
+pkgver=6.10.2.arch1
+pkgrel=1.1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://gitlab.com/dragonn/linux-g14.git"
@@ -26,24 +26,8 @@ source=(
 
   0042-v4-0-1-platform-x86-asus-wmi-add-support-for-vivobook-fan-profiles.patch
 
-  v4-0001-platform-x86-asus-wmi-add-support-for-2024-ROG-Mi.patch
-  v4-0002-platform-x86-asus-wmi-add-support-for-Vivobook-GP.patch
-  v4-0003-platform-x86-asus-wmi-add-support-variant-of-TUF-.patch
-  v4-0004-platform-x86-asus-wmi-support-toggling-POST-sound.patch
-  v4-0005-platform-x86-asus-wmi-store-a-min-default-for-ppt.patch
-  v4-0006-platform-x86-asus-wmi-adjust-formatting-of-ppt-na.patch
-  v4-0007-platform-x86-asus-wmi-ROG-Ally-increase-wait-time.patch
-  v4-0008-platform-x86-asus-wmi-Add-support-for-MCU-powersa.patch
-  v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch
   0001-Fixes-ae834a549ec1-platform-x86-asus-wmi-add-support.patch
   0001-ALSA-hda-realtek-cs35l41-Fixup-remaining-asus-strix-.patch
-
-  #0001-platform-x86-asus-wmi-add-support-for-vivobook-fan-p.patch
-
-  #0001-HID-asus-fix-more-n-key-report-descriptors-if-n-key-.patch
-  0002-HID-asus-make-asus_kbd_init-generic-remove-rog_nkey_.patch
-  0003-HID-asus-add-ROG-Ally-N-Key-ID-and-keycodes.patch
-  0004-HID-asus-add-ROG-Z13-lightbar.patch
 
   0001-platform-x86-asus-wmi-add-debug-print-in-more-key-pl.patch
   0002-platform-x86-asus-wmi-don-t-fail-if-platform_profile.patch
@@ -52,7 +36,7 @@ source=(
   0005-asus-bios-add-dgpu-tgp-control.patch
   0006-asus-bios-add-apu-mem.patch
   0007-asus-bios-add-core-count-control.patch
-  #0008-asus-wmi-deprecate-bios-features.patch
+  
   v2-0001-hid-asus-use-hid-for-brightness-control-on-keyboa.patch
   0003-platform-x86-asus-wmi-add-macros-and-expose-min-max-.patch
   
@@ -70,7 +54,7 @@ source=(
   amd-tablet-sfh.patch
 
 
-  "0001-sched-ext.patch"::"https://raw.githubusercontent.com/cachyos/kernel-patches/master/6.9/sched/0001-sched-ext.patch"
+  "0001-sched-ext.patch"::"https://raw.githubusercontent.com/cachyos/kernel-patches/master/6.10/sched/0001-sched-ext.patch"
 
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
