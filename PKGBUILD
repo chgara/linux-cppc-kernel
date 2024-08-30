@@ -1,5 +1,5 @@
 pkgbase=linux-g14
-pkgver=6.10.2.arch1
+pkgver=6.10.6.arch1
 pkgrel=1.1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -25,9 +25,6 @@ source=(
   0001-acpi-proc-idle-skip-dummy-wait.patch
 
   0042-v4-0-1-platform-x86-asus-wmi-add-support-for-vivobook-fan-profiles.patch
-
-  0001-Fixes-ae834a549ec1-platform-x86-asus-wmi-add-support.patch
-  0001-ALSA-hda-realtek-cs35l41-Fixup-remaining-asus-strix-.patch
 
   0001-platform-x86-asus-wmi-add-debug-print-in-more-key-pl.patch
   0002-platform-x86-asus-wmi-don-t-fail-if-platform_profile.patch
