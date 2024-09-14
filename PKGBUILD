@@ -48,11 +48,13 @@ source=(
   0038-mediatek-pci-reset.patch
   0040-workaround_hardware_decoding_amdgpu.patch
 
-  amd-tablet-sfh.patch
+
+  0050-asus-cppc-ffh-fix.patch
 
 
   "0001-sched-ext.patch"::"https://raw.githubusercontent.com/cachyos/kernel-patches/master/6.10/sched/0001-sched-ext.patch"
 
+  amd-tablet-sfh.patch
 
   "sys-kernel_arch-sources-g14_files-0047-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch"
   "sys-kernel_arch-sources-g14_files-0048-asus-nb-wmi-fix-tablet_mode_sw_int.patch"
@@ -85,6 +87,7 @@ sha256sums=('SKIP'
             '2480528e81377b27a4558f989bf810537b820f9f7696b52538fa01c0b81bf899'
             '1edb362a762c8858374027e30ff58ae0014e117fdc05cc7db6da50f80e7aab87'
             '508f90cbe81a9a145cc540703470f1e6b5d21c7a7b9166d2ce6e56b401262b04'
+            'SKIP'
             '15e912a66e4bbce1cf0450f1dc6610653df29df8dd6d5426f9c1b039490436c8'
             '444f2d86de8c2177655b01596f939f99c2e7abfa8efad8a509e0a334f42dfa85')
 

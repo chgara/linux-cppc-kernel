@@ -1,3 +1,9 @@
+This is Chgara's port of the linux g14 kernel adding the FFH CPPC patch
+
+
+---
+
+
 This kernel contains miscellaneous patches for ASUS ROG Laptops (not only for G14)
 
 More information and recommend way to install this kernel can be found here https://asus-linux.org/wiki/arch-guide/
